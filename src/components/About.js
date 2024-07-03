@@ -2,10 +2,28 @@ import React from 'react';
 import { FaArrowDown } from 'react-icons/fa';
 import { Link } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
+import { useState, useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 const About = () => {
+  const [animate, setAnimate] = useState(false);
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  // When the component comes into view, set animate to true
+  useEffect(() => {
+    if (inView) {
+      setAnimate(true);
+    }
+  }, [inView]);
+
   return (
-    <div className='font-oswald flex flex-col md:flex-row bg-gradient-to-br from-[#0d0f1a] to-[#111525] items-center justify-center p-8'>
+    <div
+      className='font-oswald flex flex-col md:flex-row bg-gradient-to-br from-[#0d0f1a] to-[#111525] items-center justify-center p-8'
+      ref={ref}
+    >
       <div className='relative max-w-lg md:max-w-none mx-4'>
         <StaticImage
           src='https://res.cloudinary.com/dbssbnuph/image/upload/f_auto,q_auto/v1/kickbox-ziri-stran/kb2_ojst6i'
@@ -14,7 +32,13 @@ const About = () => {
         />
         <div className='absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-black opacity-50 rounded-lg'></div>
       </div>
-      <div className='text-white py-10 flex flex-col justify-center items-center px-4'>
+      <div
+        className={`text-white py-10 flex flex-col justify-center items-center px-4 ${
+          animate
+            ? 'animate-fade-right animate-duration-1000 animate-delay-200'
+            : ''
+        }`}
+      >
         <div className='flex flex-col items-left justify-center mb-10 md:w-96'>
           <h1 className='text-4xl font-extrabold text-center tracking-wide '>
             POMEN BORILNIH ZNANJ

@@ -565,3 +565,5 @@ export const Head = () => (
     description='Sign up for our martial arts programs today. Join us to develop your skills in a supportive environment. Start your journey towards fitness, confidence, and personal growth.'
   />
 );
+
+

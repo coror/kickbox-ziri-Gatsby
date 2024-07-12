@@ -14,9 +14,9 @@ const Navbar = () => {
   };
 
   return (
-    <nav className='bg-[#0A0D1B] md:flex md:items-center'>
-      <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8'>
-        <div className='relative flex h-20 items-center justify-between'>
+    <nav className='bg-[#0A0D1B] md:flex md:items-center md:min-h-32 absolute opacity-80 z-50 w-full '>
+      <div className='mx-auto px-2 sm:px-6 lg:px-8 '>
+        <div className='relative flex h-20 items-center '>
           <div className='absolute inset-y-0 left-0 flex items-center md:hidden'>
             <button
               type='button'
@@ -46,7 +46,7 @@ const Navbar = () => {
           </div>
           <div className='flex flex-1 items-center justify-center md:items-stretch md:justify-start'>
             <Link
-              className='flex flex-shrink-0 items-center  hover:opacity-80 transition-opacity duration-200 ease-in-out'
+              className='flex flex-shrink-0 items-center hover:opacity-80 transition-opacity duration-200 ease-in-out mr-20'
               to='/'
             >
               <StaticImage
@@ -54,17 +54,17 @@ const Navbar = () => {
                 alt='logo'
                 src='../../images/logo.jpg'
               />
-              <span className=' text-white text-2xl ml-2 font-oswald'>
+              <span className=' text-white text-2xl md:text-3xl ml-2 font-oswald'>
                 KICKBOX ŽIRI
               </span>
             </Link>
-            <div className='hidden md:ml-6 md:block'>
+            <div className='hidden md:ml-6 md:block text-xl '>
               <div className='flex space-x-2'>
                 <Link
                   to='/'
                   className={`${
                     pathname === '/' ? 'text-[rgb(228,61,78)]' : 'text-white'
-                  }   hover:text-[rgb(228,61,78)] px-3 py-2 transition-all duration-300 ease-in-out  font-oswald text-base tracking-wider`}
+                  }   hover:text-[rgb(228,61,78)] px-4 py-2 transition-all duration-300 ease-in-out font-oswald tracking-wider `}
                 >
                   DOMOV
                 </Link>
@@ -74,7 +74,7 @@ const Navbar = () => {
                     pathname === '/programi/'
                       ? 'text-[rgb(228,61,78)]'
                       : 'text-white'
-                  }   hover:text-[rgb(228,61,78)] px-3 py-2 transition-all duration-300 ease-in-out  font-oswald tracking-wider`}
+                  }   hover:text-[rgb(228,61,78)] px-4 py-2 transition-all duration-300 ease-in-out  font-oswald tracking-wider`}
                 >
                   PROGRAMI
                 </Link>
@@ -84,7 +84,7 @@ const Navbar = () => {
                     pathname === '/galerija/'
                       ? 'text-[rgb(228,61,78)]'
                       : 'text-white'
-                  }   hover:text-[rgb(228,61,78)] px-3 py-2 transition-all duration-300 ease-in-out  font-oswald tracking-wider`}
+                  }   hover:text-[rgb(228,61,78)] px-4 py-2 transition-all duration-300 ease-in-out  font-oswald tracking-wider`}
                 >
                   GALERIJA
                 </Link>
@@ -94,7 +94,7 @@ const Navbar = () => {
                     pathname === '/about/'
                       ? 'text-[rgb(228,61,78)]'
                       : 'text-white'
-                  }   hover:text-[rgb(228,61,78)] px-3 py-2 transition-all duration-300 ease-in-out  font-oswald tracking-wider`}
+                  }   hover:text-[rgb(228,61,78)] px-4 py-2 transition-all duration-300 ease-in-out  font-oswald tracking-wider`}
                 >
                   O NAS
                 </Link>
@@ -104,7 +104,7 @@ const Navbar = () => {
                     pathname === '/trenerji/'
                       ? 'text-[rgb(228,61,78)]'
                       : 'text-white'
-                  }   hover:text-[rgb(228,61,78)] px-3 py-2 transition-all duration-300 ease-in-out  font-oswald tracking-wider`}
+                  }   hover:text-[rgb(228,61,78)] px-4 py-2 transition-all duration-300 ease-in-out  font-oswald tracking-wider`}
                 >
                   TRENERJI
                 </Link>
@@ -114,7 +114,7 @@ const Navbar = () => {
                     pathname === '/vpis/'
                       ? 'text-[rgb(228,61,78)]'
                       : 'text-white'
-                  }   hover:text-[rgb(228,61,78)]  py-2 transition-all duration-300 ease-in-out  font-oswald tracking-wider border-2 border-[rgb(228,61,78)] px-6`}
+                  }   hover:text-[rgb(228,61,78)] px-8  py-2 transition-all duration-300 ease-in-out  font-oswald tracking-wider border-2 border-[rgb(228,61,78)]`}
                 >
                   VPIS
                 </Link>

@@ -3,14 +3,23 @@ import { StaticImage } from 'gatsby-plugin-image';
 
 const Header = () => {
   return (
-    <div className='relative bg-black'>
-      <h1 className='hidden md:flex font-oswald tracking-wider absolute top-0 left-0 right-0 p-4 items-center justify-center text-white text-5xl font-bold animate-fade-left animate-duration-[4000ms] animate-delay-[2000ms] z-10 mt-5'>
-        KICKBOX ŽIRI
-      </h1>
+    <div className='md:w-auto md:max-h-screen overflow-hidden relative '>
+      <div className='absolute top-[20%] right-1/2 transform -translate-x-1/2 -translate-y-1/2 px-8 text-center text-white animate-fade-left animate-delay-1000 z-10 md:mx-[170px]'>
+        <div>
+          <h1 className='text-2xl md:text-5xl font-oswald tracking-wider text-left'>
+            DOBRODOŠLI NA NAŠI STRANI
+          </h1>
+          <div className=' border-b-4 border-[rgb(228,61,78)] w-16 mt-5  animate-fade-left animate-delay-1500'></div>
+          <p className=' text-left text-base md:text-2xl mt-5  animate-fade-left animate-delay-2000'>
+            Vsako veliko potovanje se prične s prvim korakom
+          </p>
+        </div>
+      </div>
+
       <StaticImage
-        src='https://res.cloudinary.com/dbssbnuph/image/upload/f_auto,q_auto/v1/kickbox-ziri/sharper_utdk6l'
+        src='https://res.cloudinary.com/dbssbnuph/image/upload/f_auto,q_auto/v1/kickbox-ziri/IMG_20240625_131334_1_z20fjx'
         alt='KICKBOX ŽIRI'
-        className='object-cover w-full h-auto animate-fade animate-duration-[4000ms] animate-delay-500 '
+        className='w-full h-full object-cover'
       />
     </div>
   );

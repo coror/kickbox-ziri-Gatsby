@@ -14,10 +14,10 @@ const Navbar = () => {
   };
 
   return (
-    <nav className='bg-[#0A0D1B] md:flex md:items-center md:min-h-32 absolute opacity-80 z-50 w-full '>
+    <nav className='bg-[#0A0D1B] md:flex md:items-center md:min-h-32 md:absolute md:opacity-80 z-50 w-full '>
       <div className='mx-auto px-2 sm:px-6 lg:px-8 '>
         <div className='relative flex h-20 items-center '>
-          <div className='absolute inset-y-0 left-0 flex items-center md:hidden'>
+          <div className='absolute inset-y-0 left-0 flex items-center lg:hidden'>
             <button
               type='button'
               id='mobile-dropdown-button'
@@ -44,27 +44,30 @@ const Navbar = () => {
               </svg>
             </button>
           </div>
-          <div className='flex flex-1 items-center justify-center md:items-stretch md:justify-start'>
-            <Link
-              className='flex flex-shrink-0 items-center hover:opacity-80 transition-opacity duration-200 ease-in-out mr-20'
-              to='/'
-            >
-              <StaticImage
-                className='h-10 w-10 rounded-md'
-                alt='logo'
-                src='../../images/logo.jpg'
-              />
-              <span className=' text-white text-2xl md:text-3xl ml-2 font-oswald'>
-                KICKBOX ŽIRI
-              </span>
-            </Link>
-            <div className='hidden md:ml-6 md:block text-xl '>
-              <div className='flex space-x-2'>
+          <div className='flex items-center justify-center'>
+            <div className=' 2xl:mr-64'>
+              <Link
+                className='flex flex-shrink-0 items-center hover:opacity-80 transition-opacity duration-200 ease-in-out mx-20'
+                to='/'
+              >
+                <StaticImage
+                  className='h-10 w-10 rounded-md'
+                  alt='logo'
+                  src='../../images/logo.jpg'
+                />
+                <span className=' text-white md:text-3xl ml-2 font-oswald'>
+                  KICKBOX ŽIRI
+                </span>
+              </Link>
+            </div>
+
+            <div className='hidden md:ml-6 lg:block text-xl '>
+              <div className='flex space-x-5  xl:space-x-14 2xl-space-x-32'>
                 <Link
                   to='/'
                   className={`${
                     pathname === '/' ? 'text-[rgb(228,61,78)]' : 'text-white'
-                  }   hover:text-[rgb(228,61,78)] px-4 py-2 transition-all duration-300 ease-in-out font-oswald tracking-wider `}
+                  }   hover:text-[rgb(228,61,78)] py-2 transition-all duration-300 ease-in-out font-oswald tracking-wider `}
                 >
                   DOMOV
                 </Link>
@@ -74,7 +77,7 @@ const Navbar = () => {
                     pathname === '/programi/'
                       ? 'text-[rgb(228,61,78)]'
                       : 'text-white'
-                  }   hover:text-[rgb(228,61,78)] px-4 py-2 transition-all duration-300 ease-in-out  font-oswald tracking-wider`}
+                  }   hover:text-[rgb(228,61,78)] py-2 transition-all duration-300 ease-in-out  font-oswald tracking-wider `}
                 >
                   PROGRAMI
                 </Link>
@@ -84,7 +87,7 @@ const Navbar = () => {
                     pathname === '/galerija/'
                       ? 'text-[rgb(228,61,78)]'
                       : 'text-white'
-                  }   hover:text-[rgb(228,61,78)] px-4 py-2 transition-all duration-300 ease-in-out  font-oswald tracking-wider`}
+                  }   hover:text-[rgb(228,61,78)]  py-2 transition-all duration-300 ease-in-out  font-oswald tracking-wider `}
                 >
                   GALERIJA
                 </Link>
@@ -94,7 +97,7 @@ const Navbar = () => {
                     pathname === '/about/'
                       ? 'text-[rgb(228,61,78)]'
                       : 'text-white'
-                  }   hover:text-[rgb(228,61,78)] px-4 py-2 transition-all duration-300 ease-in-out  font-oswald tracking-wider`}
+                  }   hover:text-[rgb(228,61,78)]  py-2 transition-all duration-300 ease-in-out  font-oswald tracking-wider `}
                 >
                   O NAS
                 </Link>
@@ -104,7 +107,7 @@ const Navbar = () => {
                     pathname === '/trenerji/'
                       ? 'text-[rgb(228,61,78)]'
                       : 'text-white'
-                  }   hover:text-[rgb(228,61,78)] px-4 py-2 transition-all duration-300 ease-in-out  font-oswald tracking-wider`}
+                  }   hover:text-[rgb(228,61,78)]  py-2 transition-all duration-300 ease-in-out  font-oswald tracking-wider `}
                 >
                   TRENERJI
                 </Link>
@@ -114,7 +117,7 @@ const Navbar = () => {
                     pathname === '/vpis/'
                       ? 'text-[rgb(228,61,78)]'
                       : 'text-white'
-                  }   hover:text-[rgb(228,61,78)] px-8  py-2 transition-all duration-300 ease-in-out  font-oswald tracking-wider border-2 border-[rgb(228,61,78)]`}
+                  }   hover:text-[rgb(228,61,78)] px-8  py-2 transition-all duration-300 ease-in-out  font-oswald tracking-wider border-2 border-[rgb(228,61,78)] `}
                 >
                   VPIS
                 </Link>
@@ -178,9 +181,7 @@ const Navbar = () => {
               <Link
                 to='/vpis'
                 className={`${
-                  pathname === '/vpis/'
-                    ? 'text-[rgb(228,61,78)]'
-                    : 'text-white'
+                  pathname === '/vpis/' ? 'text-[rgb(228,61,78)]' : 'text-white'
                 } block px-3 py-2 rounded-md text-base font-medium`}
               >
                 VPIS

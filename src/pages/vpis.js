@@ -234,7 +234,7 @@ const Vpis = () => {
 
   return (
     <Layout>
-      <div className='bg-gradient-to-br from-[#0d0f1a] to-[#111525] font-oswald py-10 text-white px-10 flex flex-col items-center'>
+      <div className='bg-gradient-to-br from-[#0d0f1a] to-[#111525] font-oswald  text-white px-10 flex flex-col items-center  py-10 md:py-40'>
         <form
           className='flex flex-col max-w-[30rem]'
           action='/submit'

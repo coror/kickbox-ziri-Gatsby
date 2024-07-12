@@ -19,7 +19,7 @@ const Programi = () => {
   }, [inView]);
 
   return (
-    <div className='relative'>
+    <div className='relative  pt-20'>
       <StaticImage
         src='https://res.cloudinary.com/dbssbnuph/image/upload/f_auto,q_auto/v1/kickbox-ziri/IMG_20240625_131334_wskrzp'
         alt='Background'

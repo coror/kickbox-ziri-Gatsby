@@ -64,7 +64,7 @@ const Galerija = () => {
 
   return (
     <Layout>
-      <div className='py-6 bg-gradient-to-br from-[#0d0f1a] to-[#111525]'>
+      <div className='bg-gradient-to-br from-[#0d0f1a] to-[#111525]   py-10 md:py-40'>
         <div className='container mx-auto'>
           <div className='grid m-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
             {clImages.map((image, index) => (

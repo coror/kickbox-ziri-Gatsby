@@ -6,7 +6,7 @@ import Seo from '../components/Seo';
 function Programi() {
   return (
     <Layout>
-      <div className='relative font-oswald py-10'>
+      <div className='relative font-oswald  py-10 md:py-40'>
         <StaticImage
           src='https://res.cloudinary.com/dbssbnuph/image/upload/f_auto,q_auto/v1/kickbox-ziri/20240624_192858_mcnu7o'
           alt='Background'

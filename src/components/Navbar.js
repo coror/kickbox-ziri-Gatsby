@@ -1,5 +1,5 @@
 import { Link } from 'gatsby';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from '@reach/router';
 import { StaticImage } from 'gatsby-plugin-image';
 
@@ -7,23 +7,49 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const pathname = location.pathname;
+  const mobileMenuRef = useRef(null);
+  const buttonRef = useRef(null); // Button ref for menu toggle
 
   // Function to toggle mobile menu state
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen((prev) => !prev);
   };
 
+  const handleClickOutside = (event) => {
+    // Ensure clicks outside the menu close the menu
+    if (
+      mobileMenuRef.current &&
+      !mobileMenuRef.current.contains(event.target) &&
+      buttonRef.current &&
+      !buttonRef.current.contains(event.target)
+    ) {
+      setIsMobileMenuOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
-    <nav className='bg-[#0A0D1B] md:flex md:items-center md:min-h-32 md:absolute md:opacity-80 z-50 w-full '>
+    <nav
+      className={`${
+        isMobileMenuOpen ? 'fixed ' : 'absolute'
+      } bg-[#0A0D1B] md:flex md:items-center md:min-h-32 md:absolute md:opacity-80 z-50 w-full`}
+    >
       <div className='mx-auto px-2 sm:px-6 lg:px-8 '>
         <div className='relative flex h-20 items-center '>
           <div className='absolute inset-y-0 left-0 flex items-center lg:hidden'>
             <button
               type='button'
               id='mobile-dropdown-button'
-              className='relative inline-flex items-center justify-center rounded-md p-2 text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white'
+              className='relative inline-flex items-center justify-center rounded-md p-2 text-text1 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-text1'
               aria-controls='mobile-menu'
               aria-expanded='false'
+              ref={buttonRef}
               onClick={toggleMobileMenu}
             >
               <span className='absolute -inset-0.5'></span>
@@ -55,7 +81,7 @@ const Navbar = () => {
                   alt='logo'
                   src='../../images/logo.jpg'
                 />
-                <span className=' text-white md:text-3xl ml-2 font-oswald'>
+                <span className=' text-text1 md:text-3xl ml-2 font-oswald'>
                   KICKBOX ŽIRI
                 </span>
               </Link>
@@ -66,58 +92,48 @@ const Navbar = () => {
                 <Link
                   to='/'
                   className={`${
-                    pathname === '/' ? 'text-[rgb(228,61,78)]' : 'text-white'
-                  }   hover:text-[rgb(228,61,78)] py-2 transition-all duration-300 ease-in-out font-oswald tracking-wider `}
+                    pathname === '/' ? 'text-identifier' : 'text-text1'
+                  }   hover:text-identifier py-2 transition-all duration-300 ease-in-out font-oswald tracking-wider `}
                 >
                   DOMOV
                 </Link>
                 <Link
                   to='/programi'
                   className={`${
-                    pathname === '/programi/'
-                      ? 'text-[rgb(228,61,78)]'
-                      : 'text-white'
-                  }   hover:text-[rgb(228,61,78)] py-2 transition-all duration-300 ease-in-out  font-oswald tracking-wider `}
+                    pathname === '/programi/' ? 'text-identifier' : 'text-text1'
+                  }   hover:text-identifier py-2 transition-all duration-300 ease-in-out  font-oswald tracking-wider `}
                 >
                   PROGRAMI
                 </Link>
                 <Link
                   to='/galerija'
                   className={`${
-                    pathname === '/galerija/'
-                      ? 'text-[rgb(228,61,78)]'
-                      : 'text-white'
-                  }   hover:text-[rgb(228,61,78)]  py-2 transition-all duration-300 ease-in-out  font-oswald tracking-wider `}
+                    pathname === '/galerija/' ? 'text-identifier' : 'text-text1'
+                  }   hover:text-identifier  py-2 transition-all duration-300 ease-in-out  font-oswald tracking-wider `}
                 >
                   GALERIJA
                 </Link>
                 <Link
                   to='/about'
                   className={`${
-                    pathname === '/about/'
-                      ? 'text-[rgb(228,61,78)]'
-                      : 'text-white'
-                  }   hover:text-[rgb(228,61,78)]  py-2 transition-all duration-300 ease-in-out  font-oswald tracking-wider `}
+                    pathname === '/about/' ? 'text-identifier' : 'text-text1'
+                  }   hover:text-identifier  py-2 transition-all duration-300 ease-in-out  font-oswald tracking-wider `}
                 >
                   O NAS
                 </Link>
                 <Link
                   to='/trenerji'
                   className={`${
-                    pathname === '/trenerji/'
-                      ? 'text-[rgb(228,61,78)]'
-                      : 'text-white'
-                  }   hover:text-[rgb(228,61,78)]  py-2 transition-all duration-300 ease-in-out  font-oswald tracking-wider `}
+                    pathname === '/trenerji/' ? 'text-identifier' : 'text-text1'
+                  }   hover:text-identifier  py-2 transition-all duration-300 ease-in-out  font-oswald tracking-wider `}
                 >
                   TRENERJI
                 </Link>
                 <Link
                   to='/vpis'
                   className={`${
-                    pathname === '/vpis/'
-                      ? 'text-[rgb(228,61,78)]'
-                      : 'text-white'
-                  }   hover:text-[rgb(228,61,78)] px-8  py-2 transition-all duration-300 ease-in-out  font-oswald tracking-wider border-2 border-[rgb(228,61,78)] `}
+                    pathname === '/vpis/' ? 'text-identifier' : 'text-text1'
+                  }   hover:text-identifier px-8  py-2 transition-all duration-300 ease-in-out  font-oswald tracking-wider border-2 border-identifier `}
                 >
                   VPIS
                 </Link>
@@ -128,12 +144,18 @@ const Navbar = () => {
 
         {/* Mobile menu */}
         {isMobileMenuOpen && (
-          <div className='md:hidden' id='mobile-menu'>
+          <div
+            className={`fixed inset-x-0 top-20 bg-layout1 transition-transform duration-300 ease-out z-10 ${
+              isMobileMenuOpen ? 'mobile-menu-enter' : 'mobile-menu-exit'
+            }`}
+            id='mobile-menu'
+            ref={mobileMenuRef}
+          >
             <div className='px-2 pt-2 pb-3 space-y-1'>
               <Link
                 to='/'
                 className={`${
-                  pathname === '/' ? 'text-[rgb(228,61,78)]' : 'text-white'
+                  pathname === '/' ? 'text-identifier' : 'text-text1'
                 } block px-3 py-2 rounded-md text-base font-medium`}
               >
                 DOMOV
@@ -141,9 +163,7 @@ const Navbar = () => {
               <Link
                 to='/programi'
                 className={`${
-                  pathname === '/programi/'
-                    ? 'text-[rgb(228,61,78)]'
-                    : 'text-white'
+                  pathname === '/programi/' ? 'text-identifier' : 'text-text1'
                 } block px-3 py-2 rounded-md text-base font-medium`}
               >
                 PROGRAMI
@@ -151,9 +171,7 @@ const Navbar = () => {
               <Link
                 to='/galerija'
                 className={`${
-                  pathname === '/galerija/'
-                    ? 'text-[rgb(228,61,78)]'
-                    : 'text-white'
+                  pathname === '/galerija/' ? 'text-identifier' : 'text-text1'
                 } block px-3 py-2 rounded-md text-base font-medium`}
               >
                 GALERIJA
@@ -161,9 +179,7 @@ const Navbar = () => {
               <Link
                 to='/about'
                 className={`${
-                  pathname === '/about/'
-                    ? 'text-[rgb(228,61,78)]'
-                    : 'text-white'
+                  pathname === '/about/' ? 'text-identifier' : 'text-text1'
                 } block px-3 py-2 rounded-md text-base font-medium`}
               >
                 O NAS
@@ -171,9 +187,7 @@ const Navbar = () => {
               <Link
                 to='/trenerji'
                 className={`${
-                  pathname === '/trenerji/'
-                    ? 'text-[rgb(228,61,78)]'
-                    : 'text-white'
+                  pathname === '/trenerji/' ? 'text-identifier' : 'text-text1'
                 } block px-3 py-2 rounded-md text-base font-medium`}
               >
                 TRENERJI
@@ -181,7 +195,7 @@ const Navbar = () => {
               <Link
                 to='/vpis'
                 className={`${
-                  pathname === '/vpis/' ? 'text-[rgb(228,61,78)]' : 'text-white'
+                  pathname === '/vpis/' ? 'text-identifier' : 'text-text1'
                 } block px-3 py-2 rounded-md text-base font-medium`}
               >
                 VPIS

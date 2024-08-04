@@ -2,33 +2,35 @@ import React from 'react';
 import Layout from '../components/Layout';
 import { StaticImage } from 'gatsby-plugin-image';
 import Seo from '../components/Seo';
+import { Link } from 'gatsby';
 
 const Trenerji = () => {
   return (
     <Layout>
-      <div className='bg-gradient-to-br from-[#0d0f1a] to-[#111525] font-oswald  2xl:px-[24rem] px-9   py-10 md:py-40'>
-        <div className='flex flex-col items-center justify-center mb-10'>
-          <h1 className='text-3xl font-bold text-center text-white'>
+      <div className='bg-layout2 font-oswald  2xl:px-[24rem] px-9   py-20 md:py-40'>
+        <div className='flex flex-col items-center justify-center mb-10 pt-8'>
+          <h1 className='text-3xl font-bold text-center text-text1'>
             TRENERJI
           </h1>
-          <div className='border-b-4 border-[rgb(228,61,78)] w-12 text-center mt-5'></div>
+          <div className='border-b-4 border-identifier w-12 text-center mt-5'></div>
         </div>
         <div className='flex flex-col justify-center items-center '>
           {/*Trener 1 */}
-          <div className='flex md:flex-row flex-col max-w-[60rem]'>
-            <div className='max-w-80 md:mr-9'>
+          <div className='flex md:flex-row flex-col max-w-[60rem] items-center xl:items-start'>
+            <div className='max-w-80 md:mr-9 min-w-80'>
               <StaticImage
                 src='https://res.cloudinary.com/dbssbnuph/image/upload/f_auto,q_auto/v1/kickbox-ziri/erin_pwgu7l'
+                id='erin'
                 alt='erin'
-                className='w-full h-full max-h-80 '
+                className='w-full h-full max-h-80 rounded-full animate-fade-right animate-duration-1000 animate-delay-3000'
               />
             </div>
-            <div className=' text-white'>
+            <div className=' text-text1    animate-fade-right animate-duration-1000 animate-delay-1000'>
               <h1 className=' text-2xl '>Erin Ćoralić</h1>
-              <p className='text-[rgb(228,61,78)] mb-10'>
+              <p className='text-identifier mb-10'>
                 Trener odraslih in mladostnikov
               </p>
-              <p>
+              <p className=' md:text-lg'>
                 Erin je diplomirani violinist. Dodiplomski študij je obiskoval v
                 Londonu na Guildhall School of Music and Drama. Po zaključenem
                 študiju v Londonu se je vrnil v Idrijo in začel aktivno
@@ -50,13 +52,19 @@ const Trenerji = () => {
             </div>
           </div>
 
-          <div className='flex md:flex-row  flex-col-reverse mt-32 max-w-[60rem]'>
-            <div className=' text-white'>
-              <h1 className=' text-2xl  text-right'>Matej Jenko</h1>
-              <p className='text-[rgb(228,61,78)] mb-10 text-right'>
-                Trener odraslih
-              </p>
-              <p>
+          <div className='flex md:flex-row flex-col max-w-[60rem] mt-20 items-center xl:items-start'>
+            <div className='max-w-80 md:mr-9 min-w-80'>
+              <StaticImage
+                src='https://res.cloudinary.com/dbssbnuph/image/upload/f_auto,q_auto/v1/kickbox-ziri/maej_djr4th'
+                id='matej'
+                alt='erin'
+                className='w-full h-full max-h-80 rounded-full animate-fade-right animate-duration-1000 animate-delay-3000'
+              />
+            </div>
+            <div className=' text-text1    animate-fade-right animate-duration-1000 animate-delay-1000'>
+              <h1 className=' text-2xl'>Matej Jenko</h1>
+              <p className='text-identifier mb-10'>Trener odraslih</p>
+              <p className=' md:text-lg'>
                 Od športov ga je najprej pritegnil nogomet, katerega je začel
                 trenirati pri šestih letih. Po treh letih je svoje zanimanje
                 preusmeril v atletiko, kasneje pa ga je povleklo k akrobatiki,
@@ -73,14 +81,15 @@ const Trenerji = () => {
                 dogodkih.
               </p>
             </div>
-            <div className='max-w-80  md:ml-9'>
-              <StaticImage
-                src='https://res.cloudinary.com/dbssbnuph/image/upload/f_auto,q_auto/v1/kickbox-ziri/maej_djr4th'
-                alt='erin'
-                className='w-full h-full max-h-80 '
-              />
-            </div>
           </div>
+        </div>
+        <div className='text-center mt-14 z-50'>
+          <Link
+            to='/vpis'
+            className='bg-identifier border-identifier border-4 border-inidentifierstitute rounded-sm py-3 px-6 text-xl cursor-pointer hover:text-text1 hover:bg-transparent transition-colors duration-200 ease-in-out'
+          >
+            Pridruži se nam!
+          </Link>
         </div>
       </div>
     </Layout>

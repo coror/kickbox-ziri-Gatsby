@@ -44,7 +44,7 @@ const Meaning = () => {
             okriljem Karate kluba Kolektor Idrija.
           </p>
         </div>
-        <div className='flex items-center md:w-96 justify-center text-left  mb-5'>
+        <div className='flex items-center md:w-96 justify-center text-left text-text2 mb-5'>
           <p className='leading-relaxed text-lg'>
             Karate tako v Žireh poučujemo neprekinjeno že skoraj 20 let. Karate
             klub Žiri je del Inštituta borilnih veščin (prej Karate inštituta),
@@ -52,8 +52,8 @@ const Meaning = () => {
             največjih slovenskih združenj borilnih športov in veščin...
             <span className='inline-block'>
               <Link
-                className=' flex text-sm hover:text-identifier border-b-2 border-identifier m-2  cursor-pointer transition ease-in-out'
-                to='/about/'
+                 className=' flex text-sm text-identifier m-2 hover:text-text1 cursor-pointer transition ease-in-out'
+                to='/o-nas/'
               >
                 PREBERI VEČ
                 <FaArrowDown className='m-1 text-sm ' />
@@ -64,7 +64,7 @@ const Meaning = () => {
       </div>
       <div className='relative max-w-lg md:max-w-none mx-4'>
         <StaticImage
-          src='https://res.cloudinary.com/dbssbnuph/image/upload/v1718978917/kickbox-ziri-stran/20240226_185506_ydetve.jpg'
+          src='https://res.cloudinary.com/di4ms4xaz/image/upload/v1723159813/karate-kickbox-ostalo/eosdyjkivjwlcaqu91jr.jpg'
           alt='erin'
           className='max-w-[40rem]  max-h-96 h-auto rounded-sm shadow-lg filter brightness-90 contrast-125'
         />

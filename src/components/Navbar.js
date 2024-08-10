@@ -37,7 +37,7 @@ const Navbar = () => {
   return (
     <nav
       className={`${
-        isMobileMenuOpen ? 'fixed ' : 'absolute'
+        isMobileMenuOpen ? 'fixed ' : 'relative'
       } bg-[#0A0D1B] md:flex md:items-center md:min-h-32 md:absolute md:opacity-80 z-50 w-full`}
     >
       <div className='mx-auto px-2 sm:px-6 lg:px-8 '>
@@ -70,8 +70,8 @@ const Navbar = () => {
               </svg>
             </button>
           </div>
-          <div className='flex items-center justify-center'>
-            <div className=' 2xl:mr-64'>
+          <div className='flex items-center justify-center mx-auto'>
+            <div className='2xl:mr-64'>
               <Link
                 className='flex flex-shrink-0 items-center hover:opacity-80 transition-opacity duration-200 ease-in-out mx-20'
                 to='/'
@@ -114,9 +114,9 @@ const Navbar = () => {
                   GALERIJA
                 </Link>
                 <Link
-                  to='/about'
+                  to='/o-nas'
                   className={`${
-                    pathname === '/about/' ? 'text-identifier' : 'text-text1'
+                    pathname === '/o-nas/' ? 'text-identifier' : 'text-text1'
                   }   hover:text-identifier  py-2 transition-all duration-300 ease-in-out  font-oswald tracking-wider `}
                 >
                   O NAS
@@ -177,9 +177,9 @@ const Navbar = () => {
                 GALERIJA
               </Link>
               <Link
-                to='/about'
+                to='/o-nas'
                 className={`${
-                  pathname === '/about/' ? 'text-identifier' : 'text-text1'
+                  pathname === '/o-nas/' ? 'text-identifier' : 'text-text1'
                 } block px-3 py-2 rounded-md text-base font-medium`}
               >
                 O NAS

@@ -32,7 +32,7 @@ const Trenerji = () => {
         <div className='flex flex-col text-center justify-center items-center m-10'>
           <Link className='max-w-80' to='/trenerji/#erin'>
             <StaticImage
-              src='https://res.cloudinary.com/dbssbnuph/image/upload/f_auto,q_auto/v1/kickbox-ziri/erin_pwgu7l'
+              src='https://res.cloudinary.com/di4ms4xaz/image/upload/v1723162451/karate-kickbox-ostalo/cmzhy6t8c0213jvu2iyw.jpg'
               alt='erin'
               className={`rounded-full w-full h-full max-h-80 hover:brightness-75 transition-all duration-300 ease-in-out cursor-pointer ${
                 animate
@@ -42,14 +42,14 @@ const Trenerji = () => {
             />
           </Link>
 
-          <div>
+          <div className='mt-1'>
             <Link
               className='text-text1 text-2xl mt-10 hover:text-identifier cursor-pointer'
               to='/trenerji/'
             >
               Erin Ćoralić
             </Link>
-            <p className='text-identifier'>Trener odraslih in mladostnikov</p>
+            <p className='text-identifier text-lg'>Trener odraslih in mladostnikov</p>
           </div>
         </div>
 
@@ -57,7 +57,7 @@ const Trenerji = () => {
         <div className='flex flex-col text-center justify-center items-center m-10'>
           <Link className='max-w-80' to='/trenerji/#matej'>
             <StaticImage
-              src='https://res.cloudinary.com/dbssbnuph/image/upload/f_auto,q_auto/v1/kickbox-ziri/20240327_180257_qp8yqt'
+              src='https://res.cloudinary.com/di4ms4xaz/image/upload/v1723120147/karate-kickbox-ostalo/w5oiligkc0uiits58yss.jpg'
               alt='matej'
               className={`rounded-full w-full h-full max-h-80 hover:brightness-75 transition-all duration-300 ease-in-out cursor-pointer ${
                 animate
@@ -67,14 +67,14 @@ const Trenerji = () => {
             />
           </Link>
 
-          <div>
+          <div className='mt-1'>
             <Link
               className='text-text1 text-2xl mt-10 hover:text-identifier cursor-pointer'
               to='/trenerji/'
             >
               Matej Jenko
             </Link>
-            <p className='text-identifier'>Trener odraslih</p>
+            <p className='text-identifier text-lg'>Trener odraslih</p>
           </div>
         </div>
       </div>

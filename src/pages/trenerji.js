@@ -19,7 +19,7 @@ const Trenerji = () => {
           <div className='flex md:flex-row flex-col max-w-[60rem] items-center xl:items-start'>
             <div className='max-w-80 md:mr-9 min-w-80'>
               <StaticImage
-                src='https://res.cloudinary.com/dbssbnuph/image/upload/f_auto,q_auto/v1/kickbox-ziri/erin_pwgu7l'
+                src='https://res.cloudinary.com/di4ms4xaz/image/upload/v1723162451/karate-kickbox-ostalo/cmzhy6t8c0213jvu2iyw.jpg'
                 id='erin'
                 alt='erin'
                 className='w-full h-full max-h-80 rounded-full animate-fade-right animate-duration-1000 animate-delay-3000'
@@ -27,7 +27,7 @@ const Trenerji = () => {
             </div>
             <div className=' text-text1    animate-fade-right animate-duration-1000 animate-delay-1000'>
               <h1 className=' text-2xl '>Erin Ćoralić</h1>
-              <p className='text-identifier mb-10'>
+              <p className='text-identifier mb-10 md:text-xl'>
                 Trener odraslih in mladostnikov
               </p>
               <p className=' md:text-lg'>
@@ -55,7 +55,7 @@ const Trenerji = () => {
           <div className='flex md:flex-row flex-col max-w-[60rem] mt-20 items-center xl:items-start'>
             <div className='max-w-80 md:mr-9 min-w-80'>
               <StaticImage
-                src='https://res.cloudinary.com/dbssbnuph/image/upload/f_auto,q_auto/v1/kickbox-ziri/maej_djr4th'
+                src='https://res.cloudinary.com/di4ms4xaz/image/upload/v1723120147/karate-kickbox-ostalo/w5oiligkc0uiits58yss.jpg'
                 id='matej'
                 alt='erin'
                 className='w-full h-full max-h-80 rounded-full animate-fade-right animate-duration-1000 animate-delay-3000'
@@ -63,7 +63,7 @@ const Trenerji = () => {
             </div>
             <div className=' text-text1    animate-fade-right animate-duration-1000 animate-delay-1000'>
               <h1 className=' text-2xl'>Matej Jenko</h1>
-              <p className='text-identifier mb-10'>Trener odraslih</p>
+              <p className='text-identifier mb-10 text-xl'>Trener odraslih</p>
               <p className=' md:text-lg'>
                 Od športov ga je najprej pritegnil nogomet, katerega je začel
                 trenirati pri šestih letih. Po treh letih je svoje zanimanje
@@ -75,7 +75,7 @@ const Trenerji = () => {
                 rezultat zanesti nase. Zato se je začel poljubno ukvarjati z
                 boksom. Pri sedemnajstih se je včlanil v Kickbox Žiri in kot
                 pomočnik trenerja pomagal pri treningih. Sedaj pa kot trener že
-                tri leta poučuje začetniške skupine. Delo z otroki in
+                tri leta poučuje začetne skupine. Delo z otroki in
                 mladostniki mu ne predstavlja nobenih težav ali povzroča stresa,
                 saj je velikokrat pomagal oziroma bil animator na različnih
                 dogodkih.

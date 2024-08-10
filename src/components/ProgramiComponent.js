@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import { StaticImage } from 'gatsby-plugin-image';
+import { StaticImage, GatsbyImage } from 'gatsby-plugin-image';
 import { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
@@ -19,11 +19,12 @@ const Programi = () => {
   }, [inView]);
 
   return (
-    <div className='relative  pt-20'>
-      <StaticImage
-        src='https://res.cloudinary.com/dbssbnuph/image/upload/f_auto,q_auto/v1/kickbox-ziri/IMG_20240625_131334_wskrzp'
+    <div className='relative pt-20'>
+      <img
+        src='https://res.cloudinary.com/di4ms4xaz/image/upload/v1723241604/karate-kickbox-ostalo/c3okrhrxtxytwboj9i5b.jpg'
         alt='Background'
         placeholder='blurred'
+        
         className='fixed inset-0 w-full h-full object-cover'
         style={{
           zIndex: -1,
@@ -47,8 +48,8 @@ const Programi = () => {
               <Link to='/programi/#kickbox-za-odrasle'>
                 <div className='w-full h-56 md:h-64 overflow-hidden'>
                   <StaticImage
-                    src='https://res.cloudinary.com/dbssbnuph/image/upload/f_auto,q_auto/v1/kickbox-ziri-stran/kb1_nmuml2'
-                    alt='Traditional Martial Arts'
+                    src='https://res.cloudinary.com/di4ms4xaz/image/upload/v1723161098/karate-kickbox-ostalo/yj3yctbuolrnxgxtzgic.png'
+                    alt='nadaljevalna'
                     className='w-full h-full hover:opacity-50 transition-opacity duration-500 ease-in-out cursor-pointer max-w-96'
                   />
                 </div>
@@ -61,10 +62,10 @@ const Programi = () => {
                 >
                   Kickbox za odrasle 1
                 </Link>
-                <p className='text-identifier mb-4 text-center'>
+                <p className='text-identifier text-xl mb-4 text-center'>
                   18:00 - 19:30 / Erin Ćoralić
                 </p>
-                <p className='text-center'>Nadaljevalna skupina</p>
+                <p className='text-center text-lg'>Nadaljevalna skupina</p>
               </div>
             </div>
 
@@ -72,8 +73,8 @@ const Programi = () => {
               <Link to='/programi/#kickbox-za-odrasle'>
                 <div className='w-full h-56 md:h-64 overflow-hidden'>
                   <StaticImage
-                    src='https://res.cloudinary.com/dbssbnuph/image/upload/f_auto,q_auto/v1/kickbox-ziri-stran/kb4_lf47du'
-                    alt='Traditional Martial Arts'
+                    src='https://res.cloudinary.com/di4ms4xaz/image/upload/v1723159858/kickbox-ziri-galerija/xktwwbw2finl3fcijmrt.png'
+                    alt='začetna'
                     className='w-full h-full hover:opacity-50 transition-opacity duration-300 ease-in-out cursor-pointer max-w-96'
                   />
                 </div>
@@ -86,10 +87,10 @@ const Programi = () => {
                 >
                   Kickbox za odrasle 2
                 </Link>
-                <p className='text-identifier mb-4 text-center'>
+                <p className='text-identifier text-xl mb-4 text-center'>
                   19:30 - 20:30 / Matej Jenko
                 </p>
-                <p className=' text-center'>Začetna skupina</p>
+                <p className='text-lg text-center'>Začetna skupina</p>
               </div>
             </div>
 
@@ -97,8 +98,8 @@ const Programi = () => {
               <Link to='/programi/'>
                 <div className=' h-56 md:h-64 overflow-hidden'>
                   <StaticImage
-                    src='https://res.cloudinary.com/dbssbnuph/image/upload/f_auto,q_auto/v1/kickbox-ziri-stran/20240226_173253_r1zimw'
-                    alt='Kick Boxing Group'
+                    src='https://res.cloudinary.com/di4ms4xaz/image/upload/v1723160469/kickbox-ziri-galerija/jqamb1suvu3e6jss8a8s.jpg'
+                    alt='mladostniki'
                     className='w-full h-full hover:opacity-50 transition-opacity duration-300 ease-in-out cursor-pointer max-w-96'
                   />
                 </div>
@@ -111,10 +112,12 @@ const Programi = () => {
                 >
                   Kickbox za mladostnike
                 </Link>
-                <p className='text-identifier mb-4 text-center'>
+                <p className='text-identifier mb-4 text-center text-xl'>
                   17:00 - 18:00 / Erin Ćoralić
                 </p>
-                <p className=' text-center'>Mladostniki od 12 let naprej</p>
+                <p className='text-lg text-center'>
+                  Mladostniki od 12 let naprej
+                </p>
               </div>
             </div>
           </div>

@@ -10,7 +10,7 @@ module.exports = {
         oswald: ['Oswald', 'sans-serif'],
       },
       colors: {
-        identifier: '#e43d4e',
+        identifier: '#004c98',
         layout1: '#0A0D1B',
         layout2: '#13182A',
         text1: '#ffffff',

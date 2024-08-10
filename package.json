@@ -1,5 +1,6 @@
 {
   "name": "gatsby-starter-hello-world",
+  "homepage": "https://kickbox-ziri.si",
   "private": true,
   "description": "A simplified bare-bones starter for Gatsby",
   "version": "0.1.0",
@@ -23,7 +24,6 @@
     "gatsby-source-cloudinary": "^0.6.1",
     "gatsby-source-filesystem": "^5.13.1",
     "gatsby-transformer-sharp": "^5.13.1",
-    "parse": "^5.2.0",
     "photoswipe": "^5.4.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

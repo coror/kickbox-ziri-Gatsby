@@ -29,7 +29,7 @@ module.exports = {
         tags: true,
         context: true,
         type: 'upload',
-        prefix: `kickbox-ziri-stran/`, // specify the folder
+        prefix: `kickbox-ziri-galerija/`, // specify the folder
       },
     },
   ],
@@ -37,7 +37,6 @@ module.exports = {
     title: 'Kickbox Žiri',
     description:
       'Kickbox Žiri ponuja dinamične in zanimive kickboks programe za odrasle in najstnike v Žireh. Naši strokovni trenerji zagotavljajo celovito usposabljanje, ki krepi samozavest, izboljšuje spretnosti samoobrambe in spodbuja zdrav življenjski slog. Pridružite se nam in doživite prednosti kickboksa v podporni in profesionalni okolici.',
-    image: '/images/logo.jpg',
-    siteUrl: 'https://www.kickbox-ziri.org',
+    siteUrl: 'https://www.kickbox-ziri.si',
   },
 };

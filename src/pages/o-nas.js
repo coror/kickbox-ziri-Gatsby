@@ -18,15 +18,15 @@ const About = () => {
           <div className='flex flex-col xl:flex-row items-center xl:items-start justify-center'>
             <div className=' mb-10 mx-2 lg:w-[50rem]'>
               <StaticImage
-                src='https://res.cloudinary.com/dbssbnuph/image/upload/v1718978856/kickbox-ziri-stran/20240327_172117_txogpe.jpg'
-                alt='erin'
+                src='https://res.cloudinary.com/di4ms4xaz/image/upload/v1723159861/kickbox-ziri-galerija/ldxusif0vwxiizmoh5dh.jpg'
+                alt='odrasli'
                 className='w-full h-full  max-h-[25rem] animate-fade-right animate-duration-1000 animate-delay-1000'
               />
             </div>
             <p className=' max-w-[50rem] md:text-lg md:mx-10  text-center animate-fade-right animate-duration-1000 animate-delay-2000'>
-              Kikboks sekcija Žiri deluje v sklopu Karate klub Žiri, ki je del
-              Inštituta borilnih veščin (prej Karate inštituta). Inštitut je s
-              preko 400 aktivnimi člani eno največjih slovenskih združenj
+              Kikboks sekcija Žiri deluje v sklopu Karate kluba Žiri, ki je del
+              Inštituta borilnih veščin (prej Karate inštituta). Inštitut je, s
+              preko 400 aktivnimi člani, eno največjih slovenskih združenj
               borilnih športov in veščin. V njem na osnovi bogatih izkušenj iz
               borbenih znanj, inovativnega znanstvenega raziskovanja, več
               desetletnega pedagoškega in andragoškega dela, oblikujemo moderne
@@ -35,29 +35,29 @@ const About = () => {
               željam vsakega posameznika. Trudimo se, da redna vadba naših
               programov pripomore k bolj polnemu in kvalitetnemu življenju in
               vadečim omogoča, da se postopno približujejo glavnim idealom
-              borilnih veščin. Vzpostavitvi notranje sproščenosti, umirjenosti,
+              borilnih veščin, vzpostavitvi notranje sproščenosti, umirjenosti,
               odločnosti in zdravega borbenega duha.
             </p>
           </div>
           <div className='flex flex-col xl:flex-row-reverse items-center xl:items-start justify-center mt-10'>
             <div className=' mb-10 mx-2 lg:w-[50rem]'>
               <StaticImage
-                src='https://res.cloudinary.com/dbssbnuph/image/upload/v1718978851/kickbox-ziri-stran/kb5_nlq2cz.png'
-                alt='erin'
+                src='https://res.cloudinary.com/di4ms4xaz/image/upload/v1723159862/kickbox-ziri-galerija/jx2rp3bastwftzh1r68c.jpg'
+                alt='mladostniki'
                 className='w-full h-full  max-h-[25rem]   animate-fade-right animate-duration-1000 animate-delay-1000'
               />
             </div>
             <p className=' max-w-[50rem] md:text-lg md:mx-10  text-center animate-fade-right animate-duration-1000 animate-delay-2000'>
-              Kikboks sekcije v Žireh deluje 4 leta. Razvila se je iz kikboks
+              Kikboks sekcija v Žireh deluje 4 leta. Razvila se je iz kikboks
               sekcije v Idriji, ki ima že več kot 20 letno tradicijo. S treningi
               kikboksa smo v Idriji začeli že leta 2002. Prvi trener je bil Miha
               Božič, ki je bil v tistem obdobju državni prvak v karateju in
               kikboksu. Leta 2018 je vodenje kikboks skupin prevzel Erin
               Ćoralić. Kikboks program smo pod njegovim vodstvom prenovili,
-              dodali vanj več prvin boksa in tajskega boksa, ter pripravili
+              dodali več prvin boksa in tajskega boksa ter pripravili
               posebne programe kikboksa za mladostnike. V Žireh trenutno
               delujejo tri kikboks skupine. Začetna in nadaljevalna kikboks
-              skupina za odrasle ter skupina kikboksa za mladostnike aktivno pa
+              skupina za odrasle ter skupina kikboksa za mladostnike, aktivno pa
               se treningov udeležuje preko 30 vadečih.
             </p>
           </div>
@@ -66,9 +66,9 @@ const About = () => {
         <div>
           <div
             className='flex flex-col items-center justify-center mb-10 pt-8'
-            id='pomen'
+            
           >
-            <h1 className='text-3xl font-bold text-center text-text1'>
+            <h1 className='text-3xl font-bold text-center text-text1' id='pomen'>
               POMEN BORILNIH VEŠČIN
             </h1>
             <div className='border-b-4 border-identifier w-12 text-center mt-5'></div>
@@ -76,8 +76,8 @@ const About = () => {
           <div className='flex flex-col xl:flex-row items-center xl:items-start justify-center'>
             <div className=' mb-10 mx-2 lg:w-[50rem]'>
               <StaticImage
-                src='https://res.cloudinary.com/dbssbnuph/image/upload/v1718978853/kickbox-ziri-stran/20240304_193502_bxyh6r.jpg'
-                alt='erin'
+                src='https://res.cloudinary.com/di4ms4xaz/image/upload/v1723159866/kickbox-ziri-galerija/r0x7irkfynn7lglvjufo.jpg'
+                alt='pomen1'
                 className='w-full h-full  max-h-[25rem] animate-fade-right animate-duration-1000 animate-delay-1000'
               />
             </div>
@@ -106,8 +106,8 @@ const About = () => {
           <div className='flex flex-col xl:flex-row-reverse items-center xl:items-start justify-center mt-10'>
             <div className=' mb-10 mx-2 lg:w-[50rem]'>
               <StaticImage
-                src='https://res.cloudinary.com/dbssbnuph/image/upload/v1718978854/kickbox-ziri-stran/kb1_nmuml2.png'
-                alt='erin'
+                src='https://res.cloudinary.com/di4ms4xaz/image/upload/v1723159869/kickbox-ziri-galerija/rsoe0epc15ssycfpidvz.jpg'
+                alt='pomen2'
                 className='w-full h-full  max-h-[25rem]   animate-fade-right animate-duration-1000 animate-delay-1000'
               />
             </div>

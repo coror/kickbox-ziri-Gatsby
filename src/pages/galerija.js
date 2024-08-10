@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Layout from '../components/Layout';
+import Spinner from '../components/Spinner'; // Import the Spinner component
 import { useStaticQuery, graphql } from 'gatsby';
 import Seo from '../components/Seo';
 
 const Galerija = () => {
+  const [clImages, setClImages] = useState([]);
+  const [loading, setLoading] = useState(true); // State to track loading status
+
   const data = useStaticQuery(graphql`
     query CloudinaryImage {
       allCloudinaryMedia {
@@ -16,7 +20,26 @@ const Galerija = () => {
     }
   `);
 
-  const clImages = data.allCloudinaryMedia.edges;
+  useEffect(() => {
+    const preloadImages = async () => {
+      const validImages = [];
+      for (const image of data.allCloudinaryMedia.edges) {
+        const img = new Image();
+        img.src = image.node.secure_url;
+        await new Promise((resolve) => {
+          img.onload = () => {
+            validImages.push(image);
+            resolve();
+          };
+          img.onerror = () => resolve(); // Ignore broken images
+        });
+      }
+      setClImages(validImages);
+      setLoading(false); // Set loading to false after images are loaded
+    };
+
+    preloadImages();
+  }, [data.allCloudinaryMedia.edges]);
 
   // State to track which image is clicked for fullscreen view
   const [selectedImage, setSelectedImage] = useState(null);
@@ -56,7 +79,6 @@ const Galerija = () => {
     } else {
       document.removeEventListener('keydown', handleCloseKeyDown);
     }
-    // Cleanup the event listener on component unmount
     return () => {
       document.removeEventListener('keydown', handleCloseKeyDown);
     };
@@ -64,27 +86,31 @@ const Galerija = () => {
 
   return (
     <Layout>
-       <div className='bg-layout2   py-20 md:py-40'>
+      <div className='bg-layout2 py-10 md:py-40 '>
         <div className='container mx-auto'>
-          <div className='grid m-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-            {clImages.map((image, index) => (
-              <div
-                key={index}
-                className='relative'
-                tabIndex={0}
-                onClick={() => handleClick(index)}
-                onKeyDown={(event) => handleKeyDown(event, index)}
-                role='button'
-                aria-label={`Open image ${index}`}
-              >
-                <img
-                  src={image.node.secure_url}
-                  alt={`${index}`}
-                  className='rounded-lg cursor-pointer object-cover w-full h-64 sm:h-48 md:h-56 lg:h-64 xl:h-80'
-                />
-              </div>
-            ))}
-          </div>
+          {loading ? ( // Show spinner while loading
+            <Spinner loading={true} />
+          ) : (
+            <div className='grid m-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+              {clImages.map((image, index) => (
+                <div
+                  key={index}
+                  className='relative'
+                  tabIndex={0}
+                  onClick={() => handleClick(index)}
+                  onKeyDown={(event) => handleKeyDown(event, index)}
+                  role='button'
+                  aria-label={`Open image ${index}`}
+                >
+                  <img
+                    src={image.node.secure_url}
+                    alt={`${index}`}
+                    className='rounded-lg cursor-pointer object-cover w-full h-64 sm:h-48 md:h-56 lg:h-64 xl:h-80'
+                  />
+                </div>
+              ))}
+            </div>
+          )}
 
           {/* Fullscreen overlay */}
           {selectedImage !== null && (

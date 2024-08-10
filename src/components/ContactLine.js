@@ -3,7 +3,7 @@ import { StaticImage } from 'gatsby-plugin-image';
 
 const ContactLine = () => {
   return (
-    <div className='flex-col md:flex-row bg-layout2 flex text-text1 py-10 font-oswald'>
+    <div className='flex-col md:flex-row bg-layout2 flex text-text1 py-10 font-oswald space-y-5'>
       {/* Phone */}
       <div className='text-center flex-1 relative' style={{ display: 'grid' }}>
         <StaticImage
@@ -28,7 +28,7 @@ const ContactLine = () => {
           }}
         >
           <div className='text-center'>
-            <p className=' text-identifier'>POKLIČITE NAS NA</p>
+            <p className=' text-identifier text-lg font-semibold'>POKLIČITE NAS NA</p>
             <span className='text-2xl'>040/799 797</span>
           </div>
         </div>
@@ -57,7 +57,7 @@ const ContactLine = () => {
           }}
         >
           <div className='special-heading text-center'>
-            <p className='text-identifier'>JOBSTOVA CESTA 22</p>
+            <p className='text-identifier text-lg font-semibold'>JOBSTOVA CESTA 22</p>
             <span className='text-2xl'>4226 ŽIRI</span>
           </div>
         </div>
@@ -86,7 +86,7 @@ const ContactLine = () => {
           }}
         >
           <div className='special-heading text-center'>
-            <p className='text-identifier'>DELOVNE URE</p>
+            <p className='text-identifier text-lg font-semibold'>DELOVNE URE</p>
             <span className='text-2xl'>08:00 - 15:00</span>
           </div>
         </div>

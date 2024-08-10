@@ -26,7 +26,7 @@ const Meaning = () => {
     >
       <div className='relative max-w-lg md:max-w-none mx-4'>
         <StaticImage
-          src='https://res.cloudinary.com/dbssbnuph/image/upload/f_auto,q_auto/v1/kickbox-ziri-stran/kb2_ojst6i'
+          src='https://res.cloudinary.com/di4ms4xaz/image/upload/v1723160123/karate-kickbox-ostalo/z3hht3kg3jqzzxkek5fu.png'
           alt='erin'
           className='max-w-[40rem] h-auto rounded-sm shadow-lg filter brightness-90 contrast-125'
         />
@@ -63,7 +63,7 @@ const Meaning = () => {
             <span className='inline-block'>
               <Link
                 className=' flex text-sm text-identifier m-2 hover:text-text1 cursor-pointer transition ease-in-out'
-                to='/about/#pomen'
+                to='/o-nas/#pomen'
               >
                 PREBERI VEČ
                 <FaArrowDown className='m-1 text-sm' />
@@ -73,7 +73,7 @@ const Meaning = () => {
         </div>
         <div>
           <p className='text-xl font-bold'>Dr. Jernej Sever</p>
-          <p className='text-xs text-gray-500'>PREDSEDNIK KLUBA</p>
+          <p className='text-xs text-gray-500'>VODJA KARATE INSTITUTA</p>
         </div>
       </div>
     </div>

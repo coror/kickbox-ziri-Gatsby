@@ -15,14 +15,14 @@ function Programi() {
           <div className='relative flex items-center flex-col'>
             <div className='flex flex-col items-center justify-center mb-10'>
               <h1 className='text-4xl font-extrabold text-center tracking-wide'>
-                KIKBOKS ZA MLADOSTNIKE
+                KICKBOX ZA MLADOSTNIKE
               </h1>
               <div className='border-b-4 border-identifier w-16 mt-5'></div>
             </div>
             <div className='flex 2xl:flex-row flex-col'>
               <div className='relative max-w-[60rem] md:mt-10 mb-10'>
                 <StaticImage
-                  src='https://res.cloudinary.com/dbssbnuph/image/upload/v1718978856/kickbox-ziri-stran/20240325_171926_xrjvnj.jpg'
+                  src='https://res.cloudinary.com/di4ms4xaz/image/upload/v1723159814/karate-kickbox-ostalo/lc5xmqqn23ejlcswmesr.jpg'
                   alt='mladostniki'
                   className='max-w-[60rem] h-auto rounded-sm shadow-lg filter brightness-90 contrast-125  animate-fade-right animate-duration-1000 animate-delay-1500'
                 />
@@ -31,8 +31,8 @@ function Programi() {
                 <p className='max-w-[50rem] md:text-lg md:mx-10 text-center'>
                   Čeprav je kikboks kontaktni borilni šport je predsodek, da gre
                   za agresiven ali nasilen šport, ki ni primeren za mladostnike,
-                  odveč. Program je prilagojen mladostnikom od 12 do 16 leta.
-                  Vadba se izvaja v nadzorovane okolju, z ustrezno zaščitno
+                  odveč. Program je prilagojen mladostnikom od 12. do 16. leta.
+                  Vadba se izvaja v nadzorovanem okolju, z ustrezno zaščitno
                   opremo. Vadeči se postopno privajajo na rahle kontakte, kar
                   jim lahko pomaga, da premagujejo strah, gradijo samozavest in
                   se tudi učijo nadzorovati lastno agresijo. Z izvajanjem tehnik
@@ -46,10 +46,10 @@ function Programi() {
                   Poleg vadbe kikboksa so vadeči vključeni v redna letna
                   testiranja gibalnih sposobnosti. Mladostnike pa za delo v
                   klubu in v šoli dodatno motiviramo s pomočjo motivacijske igre
-                  Joker, ki Digitalno okolje uporablja za motiviranje vadečih
+                  Joker, ki digitalno okolje uporablja za motiviranje vadečih
                   pri doseganju boljših rezultatov v šoli in pri kikboksu.
                   Jokerja je mogoče osvojiti z dobrimi ocenami v šoli, dobrimi
-                  rezultati na testiranju gibalnih sposobnosti, s pomočjo na
+                  rezultati na testiranju gibalnih sposobnosti ali s pomočjo na
                   treningih in tekmovanjih. Kikboks je dinamičen in energičen
                   šport, ki prinaša številne koristi za razvoj mladostnikov.
                   Vabimo vas, da se nam pridružite. Z veseljem bomo z vami
@@ -91,7 +91,7 @@ function Programi() {
                         Kikboks je intenzivna celostna vadba, ki vključuje
                         različne mišične skupine. Mladostniki razvijajo moč,
                         vzdržljivost, gibljivost in koordinacijo. Redna vadba
-                        karateja spodbuja zdrav življenjski slog in prispeva k
+                        kikboksa spodbuja zdrav življenjski slog in prispeva k
                         celostnemu fizičnemu razvoju.
                       </p>
                       <li className='mb-5 text-lg font-semibold'>
@@ -111,7 +111,7 @@ function Programi() {
                       <p className='mb-5 md:text-lg'>
                         Redni treningi kikboksa zahtevajo disciplino in
                         vztrajnost. Mladostniki se učijo postavljati cilje,
-                        delati na njih in premagovati ovire. To so ključne
+                        delati na dosegi ciljev in premagovati ovire. To so ključne
                         veščine, ki jim bodo koristile v šoli, doma in v
                         življenju.
                       </p>
@@ -136,8 +136,8 @@ function Programi() {
               <div className='flex 2xl:flex-row flex-col'>
                 <div className='relative max-w-[60rem] md:mt-10 mb-10'>
                   <StaticImage
-                    src='https://res.cloudinary.com/dbssbnuph/image/upload/v1718978851/kickbox-ziri-stran/20240327_192918_vnmnmu.jpg'
-                    alt='karate practice'
+                    src='https://res.cloudinary.com/di4ms4xaz/image/upload/v1723162718/karate-kickbox-ostalo/ehzouzziozimd6v90hzq.png'
+                    alt='odrasli'
                     className='max-w-[60rem] h-auto rounded-sm shadow-lg filter brightness-90 contrast-125  animate-fade-right animate-duration-1000 animate-delay-1500'
                   />
                 </div>
@@ -146,9 +146,9 @@ function Programi() {
                     Program kikboks za odrasle je zelo primeren za odrasle, ki
                     si želijo intenzivne, rahlo kontaktne, aerobne vadbe v
                     parih. Zaradi uporabe rok in nog pri vadbi kikboksa
-                    razvijamo množico različnih telesnih sposobnosti
+                    razvijamo množico različnih telesnih sposobnosti:
                     vzdržljivost, moč, hitrost pa tudi gibljivost in
-                    koordinacijo. Šport je iz borbenega vidika zelo praktičen in
+                    koordinacijo. Šport je z borbenega vidika zelo praktičen in
                     uporaben. V kontroliranem, dogovorjenem okolju se srečujemo
                     z različnimi razsežnostmi borbe in se učimo samoobrambe,
                     premagovanja strahu, treme in krepitve koncentracije v
@@ -159,7 +159,7 @@ function Programi() {
                     se nam in dovolite, da kickbox postane del vašega življenja!
                     Ne glede na to, ali iščete kondicijski izziv, sredstvo za
                     sprostitev ali novo skupnost, boste pri nas našli vse to in
-                    še več. Kikboks je šport, ki ne pozna starostnih omejitev,
+                    še več. Kikboks je šport, ki ne pozna starostnih omejitev
                     in prinaša številne koristi za vsakogar, ne glede na spol.
                   </p>
                   <div className='flex flex-col md:flex-row items-center justify-center'>
@@ -169,7 +169,7 @@ function Programi() {
                       </div>
                       <ul>
                         <li className='mb-5 text-lg font-semibold'>
-                          CELOSTNA VADBA ZA VSA ZNANJE IN STAROSTI
+                          CELOSTNA VADBA ZA VSE NIVOJE ZNANJA IN STAROSTI
                         </li>
                         <p className='mb-5 md:text-lg'>
                           Naš program je primeren tako za popolne začetnike kot
@@ -202,7 +202,7 @@ function Programi() {
                           SOCIALIZACIJA IN DRUŽENJE
                         </li>
                         <p className='mb-5 md:text-lg'>
-                          Naše kikboks skupine ponuja priložnost za sklepanje
+                          Naše kikboks skupine ponujajo priložnost za sklepanje
                           novih prijateljstev. Ne glede na vaše znanje boste
                           deležni spodbude in motivacije, saj skupaj rastemo in
                           napredujemo.
@@ -211,7 +211,7 @@ function Programi() {
                           PRIMEREN ZA ŽENSKE IN MOŠKE
                         </li>
                         <p className='mb-5 md:text-lg'>
-                          Kikboks je primeren za vse ne glede na spol. Naš
+                          Kikboks je primeren za vse, ne glede na spol. Naš
                           program je zasnovan tako, da omogoča udobno in varno
                           okolje za vadbo tako ženskam kot moškim. Prilagoditve
                           se lahko naredijo glede na posameznikove potrebe.

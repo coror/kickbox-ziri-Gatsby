@@ -30,7 +30,6 @@ const Meaning = () => {
           alt='erin'
           className='max-w-[40rem] h-auto rounded-sm shadow-lg filter brightness-90 contrast-125'
         />
-        <div className='absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-black opacity-50 rounded-lg'></div>
       </div>
       <div
         className={`text-text1 py-10 flex flex-col justify-center items-center px-4 ${

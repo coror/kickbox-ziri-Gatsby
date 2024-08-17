@@ -143,6 +143,6 @@ export default Galerija;
 export const Head = () => (
   <Seo
     title='Galerija'
-    description='Raziščite našo galerijo, kjer si lahko ogledate fotografije naših dogodkov in skupnostnih aktivnosti. Pridobite vpogled v živahno in podporno okolje, ki vam pomaga doseči vaše fitnes cilje.'
+    description='Raziščite našo galerijo, kjer si lahko ogledate fotografije naših dogodkov in skupnostnih aktivnosti. Pridobite vpogled v živahno in podporno okolje, ki vam pomaga doseči vaše cilje.'
   />
 );

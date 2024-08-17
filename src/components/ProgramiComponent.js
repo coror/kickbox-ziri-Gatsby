@@ -19,13 +19,13 @@ const Programi = () => {
   }, [inView]);
 
   return (
-    <div className='relative pt-20'>
+    <div className='relative pt-20  overflow-x-hidden'>
       <img
         src='https://res.cloudinary.com/di4ms4xaz/image/upload/v1723241604/karate-kickbox-ostalo/c3okrhrxtxytwboj9i5b.jpg'
         alt='Background'
         placeholder='blurred'
         
-        className='fixed inset-0 w-full h-full object-cover'
+        className='fixed inset-0 w-full h-full object-cover '
         style={{
           zIndex: -1,
         }}

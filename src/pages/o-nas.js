@@ -54,21 +54,21 @@ const About = () => {
               Božič, ki je bil v tistem obdobju državni prvak v karateju in
               kikboksu. Leta 2018 je vodenje kikboks skupin prevzel Erin
               Ćoralić. Kikboks program smo pod njegovim vodstvom prenovili,
-              dodali več prvin boksa in tajskega boksa ter pripravili
-              posebne programe kikboksa za mladostnike. V Žireh trenutno
-              delujejo tri kikboks skupine. Začetna in nadaljevalna kikboks
-              skupina za odrasle ter skupina kikboksa za mladostnike, aktivno pa
-              se treningov udeležuje preko 30 vadečih.
+              dodali več prvin boksa in tajskega boksa ter pripravili posebne
+              programe kikboksa za mladostnike. V Žireh trenutno delujejo tri
+              kikboks skupine. Začetna in nadaljevalna kikboks skupina za
+              odrasle ter skupina kikboksa za mladostnike, aktivno pa se
+              treningov udeležuje preko 30 vadečih.
             </p>
           </div>
         </div>
         {/* POMEN */}
         <div>
-          <div
-            className='flex flex-col items-center justify-center mb-10 pt-8'
-            
-          >
-            <h1 className='text-3xl font-bold text-center text-text1' id='pomen'>
+          <div className='flex flex-col items-center justify-center mb-10 pt-8'>
+            <h1
+              className='text-3xl font-bold text-center text-text1'
+              id='pomen'
+            >
               POMEN BORILNIH VEŠČIN
             </h1>
             <div className='border-b-4 border-identifier w-12 text-center mt-5'></div>
@@ -183,6 +183,7 @@ export default About;
 export const Head = () => (
   <Seo
     title='O nas'
-    description='Spoznajte filozofijo in načela, ki stojijo za našimi borilnimi veščinami. Naučite se, kako odpravljamo pogoste predsodke o borilnih veščinah, s poudarkom na kontroliranem vadbenem okolju, ki spodbuja fizični, mentalni in čustveni razvoj. Naš pristop poudarja spoštovanje, samozavest in uravnotežen življenjski slog, ki vam pomaga doseči vaš polni potencial.'
+    description='
+Spoznajte filozofijo, načela in bogato zgodovino našega kluba, ki stojijo za našimi borilnimi veščinami. Odkrijte, kako že vrsto let odpravljamo pogoste predsodke o borilnih veščinah, s poudarkom na kontroliranem vadbenem okolju, ki spodbuja fizični, mentalni in čustveni razvoj. Naš pristop skozi čas poudarja spoštovanje, samozavest in uravnotežen življenjski slog, ki vam pomaga doseči vaš polni potencial.'
   />
 );

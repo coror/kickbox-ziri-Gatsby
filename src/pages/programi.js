@@ -111,8 +111,8 @@ function Programi() {
                       <p className='mb-5 md:text-lg'>
                         Redni treningi kikboksa zahtevajo disciplino in
                         vztrajnost. Mladostniki se učijo postavljati cilje,
-                        delati na dosegi ciljev in premagovati ovire. To so ključne
-                        veščine, ki jim bodo koristile v šoli, doma in v
+                        delati na dosegi ciljev in premagovati ovire. To so
+                        ključne veščine, ki jim bodo koristile v šoli, doma in v
                         življenju.
                       </p>
                     </ul>
@@ -159,8 +159,8 @@ function Programi() {
                     se nam in dovolite, da kickbox postane del vašega življenja!
                     Ne glede na to, ali iščete kondicijski izziv, sredstvo za
                     sprostitev ali novo skupnost, boste pri nas našli vse to in
-                    še več. Kikboks je šport, ki ne pozna starostnih omejitev
-                    in prinaša številne koristi za vsakogar, ne glede na spol.
+                    še več. Kikboks je šport, ki ne pozna starostnih omejitev in
+                    prinaša številne koristi za vsakogar, ne glede na spol.
                   </p>
                   <div className='flex flex-col md:flex-row items-center justify-center'>
                     <div className='text-center max-w-[40rem] pt-10'>
@@ -242,6 +242,6 @@ export default Programi;
 export const Head = () => (
   <Seo
     title='Programi'
-    description='Odkrijte našo raznoliko ponudbo programov, zasnovanih za vse ravni telesne pripravljenosti in interese. Od treninga moči do joge, naši strokovni trenerji nudijo osebno usmerjanje, da vam pomagajo doseči vaše fitnes cilje.'
+    description='Pridružite se našim kickboks programom za mladostnike in odrasle v Karate klubu Žiri. Izboljšajte svojo moč, vzdržljivost in samoobrambne spretnosti pod vodstvom izkušenih trenerjev. Naši treningi ponujajo intenzivno vadbo, ki krepi telo in duha, hkrati pa spodbuja samozavest in zdrav življenjski slog. Vpišite se zdaj in doživite kickboks v podporni in motivirajoči skupnosti.'
   />
 );

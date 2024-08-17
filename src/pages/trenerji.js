@@ -75,10 +75,9 @@ const Trenerji = () => {
                 rezultat zanesti nase. Zato se je začel poljubno ukvarjati z
                 boksom. Pri sedemnajstih se je včlanil v Kickbox Žiri in kot
                 pomočnik trenerja pomagal pri treningih. Sedaj pa kot trener že
-                tri leta poučuje začetne skupine. Delo z otroki in
-                mladostniki mu ne predstavlja nobenih težav ali povzroča stresa,
-                saj je velikokrat pomagal oziroma bil animator na različnih
-                dogodkih.
+                tri leta poučuje začetne skupine. Delo z otroki in mladostniki
+                mu ne predstavlja nobenih težav ali povzroča stresa, saj je
+                velikokrat pomagal oziroma bil animator na različnih dogodkih.
               </p>
             </div>
           </div>
@@ -101,6 +100,6 @@ export default Trenerji;
 export const Head = () => (
   <Seo
     title='Trenerji'
-    description='Spoznajte našo ekipo profesionalnih trenerjev, ki so predani temu, da vam pomagajo doseči vaše fitnes cilje. Naši trenerji so izkušeni, certificirani in strastni pri zagotavljanju osebnega vodenja in podpore za vaš uspeh.'
+    description='Spoznajte našo ekipo predanih kickbox trenerjev, ki vam bodo pomagali doseči vaše cilje v kickboxu. Naši trenerji so izkušeni, certificirani in strastni v svojem delu, ter zagotavljajo profesionalno vodenje in podporo za vaš napredek.'
   />
 );

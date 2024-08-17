@@ -52,13 +52,13 @@ const Footer = () => {
         </p>
       </div>
       <div className='m-10 md:m-20'>
-        <p className='flex items-center m-2'>
+        <a href='mailto:info@premik.si' className='flex items-center m-2 hover:text-identifier'>
           <MdEmail className='text-identifier mx-3' /> info@premik.si
-        </p>
-        <p className='flex items-center m-2'>
+        </a>
+        <a href='tel: 040799797' className='flex items-center m-2 hover:text-identifier'>
           <FaPhoneAlt className='text-identifier mx-3' />
           040/799 797
-        </p>
+        </a>
       </div>
     </div>
   );

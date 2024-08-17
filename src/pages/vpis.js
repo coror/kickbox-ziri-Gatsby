@@ -6,6 +6,7 @@ import { Link } from 'gatsby';
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const phoneRegex = /^\+?[0-9]{7,15}$/;
+const today = new Date().toISOString().split('T')[0];
 
 const Vpis = () => {
   const initialFields = {
@@ -218,8 +219,7 @@ const Vpis = () => {
       };
       const body = JSON.stringify(rawBody);
       const headers = {
-        'x-functions-key':
-          'OnwN6nxhD9p5ZzvQxdwafIeUMMTTjvHZCZtMRykcBrVgAzFuRzCO9w==',
+        'x-functions-key': process.env.AZURE_API_FUNCTIONS_KEY,
         'Content-Type': 'application/json',
       };
 
@@ -365,6 +365,8 @@ const Vpis = () => {
             value={fields['postna-st']}
             onChange={handleChange}
             onBlur={handleBlur}
+            inputMode='numeric'
+            pattern='[0-9]'
           />
           <div>
             {!cityNumValid && !isEdit && (
@@ -402,6 +404,8 @@ const Vpis = () => {
             className='mb-3 text-black px-1'
             value={fields['datum-rojstva']}
             onChange={handleChange}
+            lang='sl'
+            max={today}
           />
           <div>
             {!dobValid && !isEdit && (
@@ -531,6 +535,7 @@ const Vpis = () => {
             name='druzinski-clani'
             className=' text-black px-1 mb-5'
             onChange={handleChange}
+            value={fields['druzinski-clani']}
           ></textarea>
 
           <label htmlFor='zastopnik' className='mb-1'>
@@ -543,6 +548,7 @@ const Vpis = () => {
             name='zastopnik'
             className=' px-1 text-black mb-5'
             onChange={handleChange}
+            value={fields.zastopnik}
           />
 
           <label htmlFor='priporocilo' className='mb-1'>
@@ -554,6 +560,7 @@ const Vpis = () => {
             name='priporocilo'
             className=' text-black px-1 mb-5'
             onChange={handleChange}
+            value={fields.priporocilo}
           ></textarea>
 
           <span htmlFor='dovoljenje' className='mb-1'>
@@ -651,6 +658,6 @@ export default Vpis;
 export const Head = () => (
   <Seo
     title='Vpis'
-    description='Sign up for our martial arts programs today. Join us to develop your skills in a supportive environment. Start your journey towards fitness, confidence, and personal growth.'
+    description='Vpišite se v naše kickboks programe za mladostnike in odrasle v Karate klubu Žiri. Pod vodstvom izkušenih trenerjev boste razvijali moč, vzdržljivost in samoobrambne spretnosti. Naši treningi so zasnovani tako, da vam pomagajo doseči vaše fitnes cilje, hkrati pa spodbujajo samozavest in zdrav življenjski slog. Pridružite se zdaj in izkusite intenzivnost in energijo kickboksa v motivirajočem okolju.'
   />
 );

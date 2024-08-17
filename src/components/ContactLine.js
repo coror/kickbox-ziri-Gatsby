@@ -57,8 +57,8 @@ const ContactLine = () => {
           }}
         >
           <div className='special-heading text-center'>
-            <p className='text-identifier text-lg font-semibold'>JOBSTOVA CESTA 22</p>
-            <span className='text-2xl'>4226 ŽIRI</span>
+            <p className='text-identifier text-lg font-semibold'>KJE SMO</p>
+            <span className='text-2xl'>PARTIZANSKA CESTA 101, 4226 ŽIRI</span>
           </div>
         </div>
       </div>

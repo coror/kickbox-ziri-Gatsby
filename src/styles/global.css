@@ -32,3 +32,9 @@
   .mobile-menu-exit {
     animation: slideOutToLeft 0.3s ease-in forwards; /* Change to slideOutToLeft if needed */
   }
+
+  input[type=number]::-webkit-inner-spin-button, 
+  input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+  }

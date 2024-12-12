@@ -15,7 +15,7 @@ const Header = () => {
           Bori se z močjo, zmagaj z umom
           </p>
           <div className='text-left mt-7 md:mt-14'>
-            <Link to='/vpis' className=' bg-identifier border-4 border-identifier py-1 rounded-sm text-xs sm:text-sm md:py-3 md:px-6  lg:text-xl cursor-pointer hover:text-identifier hover:bg-transparent transition-colors duration-200 ease-in-out'>
+            <Link to='/vpis' className=' bg-identifier border-4 border-identifier p-1 rounded-md text-xs sm:text-sm md:py-3 md:px-6  lg:text-xl cursor-pointer hover:text-identifier hover:bg-transparent transition-colors duration-200 ease-in-out'>
               Pridruži se nam!
             </Link>
           </div>

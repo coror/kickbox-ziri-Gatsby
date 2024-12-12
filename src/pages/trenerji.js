@@ -27,7 +27,7 @@ const Trenerji = () => {
             </div>
             <div className=' text-text1    animate-fade-right animate-duration-1000 animate-delay-1000'>
               <h1 className=' text-2xl '>Erin Ćoralić</h1>
-              <p className='text-identifier mb-10 md:text-xl'>
+              <p className='text-text2 mb-10 md:text-xl'>
                 Trener odraslih in mladostnikov
               </p>
               <p className=' md:text-lg'>
@@ -47,7 +47,9 @@ const Trenerji = () => {
                 delovati tudi kot trener karateja. Trenutno je trener kickboksa
                 v Idriji in v Žireh ter karate trener tekmovalcev ter
                 rekreativnih skupin v Idriji, Črnem Vrhu, Spodnji Idriji in
-                Žireh.
+                Žireh. Poleg tega je reprezentančni trener Karate zveze
+                Slovenije, kjer svoje bogate izkušnje in znanje prenaša tudi na
+                vrhunske športnike.
               </p>
             </div>
           </div>
@@ -63,7 +65,7 @@ const Trenerji = () => {
             </div>
             <div className=' text-text1    animate-fade-right animate-duration-1000 animate-delay-1000'>
               <h1 className=' text-2xl'>Matej Jenko</h1>
-              <p className='text-identifier mb-10 text-xl'>Trener odraslih</p>
+              <p className='text-text2 mb-10 text-xl'>Trener odraslih</p>
               <p className=' md:text-lg'>
                 Od športov ga je najprej pritegnil nogomet, katerega je začel
                 trenirati pri šestih letih. Po treh letih je svoje zanimanje
@@ -85,7 +87,7 @@ const Trenerji = () => {
         <div className='text-center mt-14 z-50'>
           <Link
             to='/vpis'
-            className='bg-identifier border-identifier border-4 border-inidentifierstitute rounded-sm py-3 px-6 text-xl cursor-pointer hover:text-text1 hover:bg-transparent transition-colors duration-200 ease-in-out'
+            className='bg-identifier text-text1 border-identifier border-4 border-inidentifierstitute rounded-sm py-3 px-6 text-xl cursor-pointer hover:text-identifier hover:bg-transparent transition-colors duration-200 ease-in-out'
           >
             Pridruži se nam!
           </Link>

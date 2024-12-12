@@ -32,6 +32,12 @@ module.exports = {
         prefix: `kickbox-ziri-galerija/`, // specify the folder
       },
     },
+    {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: `https://kickbox-ziri.si`,
+      },
+    },
   ],
   siteMetadata: {
     title: 'Kickbox Žiri',

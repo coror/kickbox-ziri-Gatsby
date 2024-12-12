@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import { StaticImage, GatsbyImage } from 'gatsby-plugin-image';
+import { StaticImage } from 'gatsby-plugin-image';
 import { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
@@ -24,7 +24,6 @@ const Programi = () => {
         src='https://res.cloudinary.com/di4ms4xaz/image/upload/v1723241604/karate-kickbox-ostalo/c3okrhrxtxytwboj9i5b.jpg'
         alt='Background'
         placeholder='blurred'
-        
         className='fixed inset-0 w-full h-full object-cover '
         style={{
           zIndex: -1,
@@ -32,7 +31,12 @@ const Programi = () => {
       />
       <div className='absolute inset-0 bg-layout2 opacity-75'></div>
       <div className='relative text-text1 font-oswald'>
-        <div className='container mx-auto py-10' ref={ref}>
+        <div
+          className={`container mx-auto py-10 ${
+            animate ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+          }`}
+          ref={ref}
+        >
           <div className='flex flex-col items-center justify-center mb-10'>
             <h1 className='text-3xl font-bold text-center'>PROGRAMI</h1>
             <div className='border-b-4 border-identifier w-12 text-center mt-5'></div>
@@ -62,7 +66,7 @@ const Programi = () => {
                 >
                   Kickbox za odrasle 1
                 </Link>
-                <p className='text-identifier text-xl mb-4 text-center'>
+                <p className='text-text2 text-xl mb-4 text-center'>
                   18:00 - 19:30 / Erin Ćoralić
                 </p>
                 <p className='text-center text-lg'>Nadaljevalna skupina</p>
@@ -87,7 +91,7 @@ const Programi = () => {
                 >
                   Kickbox za odrasle 2
                 </Link>
-                <p className='text-identifier text-xl mb-4 text-center'>
+                <p className='text-text2 text-xl mb-4 text-center'>
                   19:30 - 20:30 / Matej Jenko
                 </p>
                 <p className='text-lg text-center'>Začetna skupina</p>
@@ -112,7 +116,7 @@ const Programi = () => {
                 >
                   Kickbox za mladostnike
                 </Link>
-                <p className='text-identifier mb-4 text-center text-xl'>
+                <p className='text-text2 mb-4 text-center text-xl'>
                   17:00 - 18:00 / Erin Ćoralić
                 </p>
                 <p className='text-lg text-center'>

@@ -34,6 +34,6 @@ module.exports = {
     title: 'Kickbox Žiri',
     description:
       'Kickbox Žiri ponuja dinamične in zanimive kickboks programe za odrasle in najstnike v Žireh. Naši strokovni trenerji zagotavljajo celovito usposabljanje, ki krepi samozavest, izboljšuje spretnosti samoobrambe in spodbuja zdrav življenjski slog. Pridružite se nam in doživite prednosti kickboksa v podporni in profesionalni okolici.',
-    siteUrl: 'https://www.kickbox-ziri.si',
+    siteUrl: 'https://kickbox-ziri.si',
   },
 };

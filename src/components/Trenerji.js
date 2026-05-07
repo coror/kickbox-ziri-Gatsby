@@ -1,8 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StaticImage } from 'gatsby-plugin-image';
 import { Link } from 'gatsby';
-import { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
+
+const TrainerCard = ({ to, image, name, role, animate, delay }) => (
+  <div
+    className={`group flex flex-col text-center justify-start items-center mx-4 ${
+      animate ? `animate-fade-up animate-once animate-duration-1000 ${delay}` : ''
+    }`}
+  >
+    <Link className='block w-64 h-64 lg:w-72 lg:h-72 relative' to={to}>
+      <div className='w-full h-full rounded-full overflow-hidden ring-4 ring-transparent group-hover:ring-identifier transition-all duration-300 shadow-xl'>
+        {image}
+      </div>
+    </Link>
+    <div className='mt-6'>
+      <Link
+        className='text-text1 text-2xl hover:text-identifier transition-colors'
+        to={to}
+      >
+        {name}
+      </Link>
+      <p className='text-text1/70 mt-1'>{role}</p>
+    </div>
+  </div>
+);
 
 const Trenerji = () => {
   const [animate, setAnimate] = useState(false);
@@ -11,7 +33,6 @@ const Trenerji = () => {
     threshold: 0.1,
   });
 
-  // When the component comes into view, set animate to true
   useEffect(() => {
     if (inView) {
       setAnimate(true);
@@ -19,83 +40,55 @@ const Trenerji = () => {
   }, [inView]);
 
   return (
-    <div className='bg-layout2 font-oswald py-10'>
+    <div className='bg-layout2 font-oswald py-16 md:py-24'>
       <div
-        className={`transition-opacity duration-2000 transform ${
+        className={`max-w-7xl mx-auto px-6 transition-opacity duration-1000 ${
           animate ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
         }`}
         ref={ref}
       >
         <div
-          className={`flex flex-col items-center justify-center mb-10${
+          className={`flex flex-col items-center justify-center mb-16 ${
             animate
-              ? 'animate-fade-right animate-duration-1000 animate-delay-200 animate-ease-in-out'
-              : ''
-          } `}
-        >
-          <h1 className='text-3xl font-bold text-center text-text1'>
-            TRENERJI
-          </h1>
-          <div className='border-b-4 border-identifier w-12 text-center mt-5'></div>
-        </div>
-        <div
-          className={`flex flex-col md:flex-row justify-center items-center  ${
-            animate
-              ? 'animate-fade-right animate-once animate-duration-1000 animate-delay-1000'
+              ? 'animate-fade-up animate-duration-1000 animate-delay-200'
               : ''
           }`}
         >
-          {/*Trener 1 */}
-          <div className='flex flex-col text-center justify-center items-center m-10'>
-            <Link className='max-w-80' to='/trenerji/#erin'>
+          <h1 className='text-3xl md:text-5xl font-extrabold text-center text-text1 tracking-wide'>
+            TRENERJI
+          </h1>
+          <div className='border-b-4 border-identifier w-16 mt-5'></div>
+        </div>
+
+        <div className='flex flex-col md:flex-row justify-center items-start gap-8 md:gap-12'>
+          <TrainerCard
+            to='/trenerji/#erin'
+            name='Erin Ćoralić'
+            role='Trener odraslih in mladostnikov'
+            animate={animate}
+            delay='animate-delay-500'
+            image={
               <StaticImage
                 src='https://res.cloudinary.com/di4ms4xaz/image/upload/v1723162451/karate-kickbox-ostalo/cmzhy6t8c0213jvu2iyw.jpg'
                 alt='erin'
-                className={`rounded-full w-full h-full max-h-80 hover:brightness-75 transition-all duration-300 ease-in-out cursor-pointer ${
-                  animate
-                    ? 'animate-fade-down animate-once animate-duration-1000 animate-delay-200'
-                    : ''
-                }`}
+                className='w-full h-full transition-transform duration-500 group-hover:scale-105'
               />
-            </Link>
-
-            <div className='mt-1'>
-              <Link
-                className='text-text1 text-2xl mt-10 hover:text-identifier cursor-pointer'
-                to='/trenerji/'
-              >
-                Erin Ćoralić
-              </Link>
-              <p className='text-text2 text-lg'>
-                Trener odraslih in mladostnikov
-              </p>
-            </div>
-          </div>
-
-          {/*Trener 2 */}
-          <div className='flex flex-col text-center justify-center items-center m-10'>
-            <Link className='max-w-80' to='/trenerji/#matej'>
+            }
+          />
+          <TrainerCard
+            to='/trenerji/#matej'
+            name='Matej Jenko'
+            role='Trener odraslih'
+            animate={animate}
+            delay='animate-delay-700'
+            image={
               <StaticImage
                 src='https://res.cloudinary.com/di4ms4xaz/image/upload/v1723120147/karate-kickbox-ostalo/w5oiligkc0uiits58yss.jpg'
                 alt='matej'
-                className={`rounded-full w-full h-full max-h-80 hover:brightness-75 transition-all duration-300 ease-in-out cursor-pointer ${
-                  animate
-                    ? 'animate-fade-down animate-once animate-duration-1000 animate-delay-200'
-                    : ''
-                }`}
+                className='w-full h-full transition-transform duration-500 group-hover:scale-105'
               />
-            </Link>
-
-            <div className='mt-1'>
-              <Link
-                className='text-text1 text-2xl mt-10 hover:text-identifier cursor-pointer'
-                to='/trenerji/'
-              >
-                Matej Jenko
-              </Link>
-              <p className='text-text2 text-lg'>Trener odraslih</p>
-            </div>
-          </div>
+            }
+          />
         </div>
       </div>
     </div>

@@ -1,6 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { StaticImage } from 'gatsby-plugin-image';
+import { FaPhoneAlt, FaMapMarkerAlt, FaRegClock } from 'react-icons/fa';
 import { useInView } from 'react-intersection-observer';
+
+const ContactItem = ({ icon, label, value, delay, animate }) => (
+  <div
+    className={`flex items-center gap-4 ${
+      animate ? `animate-fade-left animate-duration-1000 ${delay}` : ''
+    }`}
+  >
+    <div className='shrink-0 w-14 h-14 rounded-full border-2 border-identifier flex items-center justify-center text-identifier text-xl'>
+      {icon}
+    </div>
+    <div className='text-left'>
+      <p className='text-identifier text-sm tracking-wider'>{label}</p>
+      <span className='text-base lg:text-xl'>{value}</span>
+    </div>
+  </div>
+);
 
 const ContactLine = () => {
   const [animate, setAnimate] = useState(false);
@@ -16,117 +32,34 @@ const ContactLine = () => {
   }, [inView]);
 
   return (
-    <div className='flex-col md:flex-row  bg-layout2 flex text-text2 py-8 font-oswald'>
+    <div className='bg-layout1 text-text1 py-8 font-oswald'>
       <div
-        className={`flex flex-col lg:flex-row mx-auto space-y-4 2xl:space-x-[18rem] ${
+        ref={ref}
+        className={`max-w-7xl mx-auto px-6 flex flex-col md:flex-row md:items-center md:justify-around gap-8 transition-opacity duration-1000 ${
           animate ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
         }`}
-        ref={ref}
       >
-        {/* Phone */}
-        <div
-          className={`text-center flex-1 relative w-[10rem] xl:w-[19rem] ${
-            animate
-              ? 'animate-fade-left animate-duration-1000 animate-delay-200 animate-ease-in-out'
-              : ''
-          } `}
-          style={{ display: 'grid' }}
-        >
-          <StaticImage
-            src='https://res.cloudinary.com/dbssbnuph/image/upload/f_auto,q_auto/v1/kickbox-ziri/phone_p2wyfl'
-            alt='Call us 24/7'
-            style={{
-              gridArea: '1/1',
-            }}
-            placeholder='blurred'
-            layout='constrained'
-            formats={['auto', 'webp', 'avif']}
-            className='bg-no-repeat bg-center m-auto w-auto h-auto'
-          />
-          <div
-            style={{
-              gridArea: '1/1',
-              position: 'relative',
-              placeItems: 'center',
-              display: 'grid',
-            }}
-          >
-            <div className='text-center'>
-              <p className=' text-white'>POKLIČITE NAS NA</p>
-              <span className='lg:text-2xl'>040/799 797</span>
-            </div>
-          </div>
-        </div>
-        {/* Location */}
-        <div
-          className={`text-center flex-1 relative w-[10rem] xl:w-[19rem] ${
-            animate
-              ? 'animate-fade-left animate-duration-1000 animate-delay-200 animate-ease-in-out'
-              : ''
-          } `}
-          style={{ display: 'grid' }}
-        >
-          <StaticImage
-            src='https://res.cloudinary.com/dbssbnuph/image/upload/f_auto,q_auto/v1/kickbox-ziri/location_xbbtzv'
-            alt='Season Street 45/2'
-            style={{
-              gridArea: '1/1',
-            }}
-            placeholder='blurred'
-            layout='constrained'
-            formats={['auto', 'webp', 'avif']}
-            className='bg-no-repeat bg-center m-auto w-auto h-auto'
-          />
-          <div
-            style={{
-              gridArea: '1/1',
-              position: 'relative',
-              placeItems: 'center',
-              display: 'grid',
-            }}
-          >
-            <div className='text-center'>
-              <p className='text-white'>KJE SMO</p>
-              <span className='lg:text-2xl'>
-                PARTIZANSKA CESTA 101, 4226 ŽIRI
-              </span>
-            </div>
-          </div>
-        </div>
-        {/* Time */}
-        <div
-          className={`text-center flex-1 relative w-[10rem] xl:w-[19rem] ${
-            animate
-              ? 'animate-fade-left animate-duration-1000 animate-delay-200 animate-ease-in-out'
-              : ''
-          } `}
-          style={{ display: 'grid' }}
-        >
-          <StaticImage
-            src='https://res.cloudinary.com/dbssbnuph/image/upload/f_auto,q_auto/v1/kickbox-ziri/time_pa0qer'
-            alt='Working Hours'
-            style={{
-              gridArea: '1/1',
-            }}
-            placeholder='blurred'
-            layout='constrained'
-            formats={['auto', 'webp', 'avif']}
-            className='bg-no-repeat bg-center m-auto w-auto h-auto'
-          />
-          <div
-            style={{
-              gridArea: '1/1',
-              position: 'relative',
-              placeItems: 'center',
-              display: 'grid',
-            }}
-          >
-            <div className='special-heading text-center'>
-              <p className='text-white'>DELOVNE URE</p>
-              <span className='lg:text-2xl'>08:00 - 15:00</span>
-            </div>
-          </div>
-        </div>
+        <ContactItem
+          icon={<FaPhoneAlt />}
+          label='POKLIČITE NAS NA'
+          value='040/799 797'
+          delay='animate-delay-200'
+          animate={animate}
+        />
+        <ContactItem
+          icon={<FaMapMarkerAlt />}
+          label='KJE SMO'
+          value='PARTIZANSKA CESTA 101, 4226 ŽIRI'
+          delay='animate-delay-500'
+          animate={animate}
+        />
+        <ContactItem
+          icon={<FaRegClock />}
+          label='DELOVNE URE'
+          value='08:00 - 15:00'
+          delay='animate-delay-1000'
+          animate={animate}
+        />
       </div>
     </div>
   );

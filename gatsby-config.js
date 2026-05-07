@@ -9,15 +9,6 @@ module.exports = {
     `gatsby-transformer-sharp`, // Needed for dynamic images
     'gatsby-plugin-postcss',
     {
-      resolve: `gatsby-plugin-google-fonts`,
-      options: {
-        fonts: [
-          `oswald\:400,500,600,700`, // you can also specify font weights and styles
-        ],
-        display: 'swap',
-      },
-    },
-    {
       resolve: `gatsby-source-cloudinary`,
       options: {
         cloudName: process.env.CLOUDINARY_CLOUD_NAME,

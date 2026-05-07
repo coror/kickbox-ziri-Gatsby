@@ -57,7 +57,7 @@ const Trenerji = () => {
             loading='eager'
             placeholder='blurred'
             objectFit='cover'
-            objectPosition='center 15%'
+            objectPosition='center 40%'
             layout='fullWidth'
             quality={100}
             formats={['auto', 'webp', 'avif']}

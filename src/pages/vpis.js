@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Layout from '../components/Layout';
+import { StaticImage } from 'gatsby-plugin-image';
 import Seo from '../components/Seo';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { Link } from 'gatsby';
@@ -7,6 +8,54 @@ import { Link } from 'gatsby';
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const phoneRegex = /^\+?[0-9]{7,15}$/;
 const today = new Date().toISOString().split('T')[0];
+
+const inputBase =
+  'px-4 py-3 bg-white border-2 focus:outline-none transition-colors duration-200 text-black';
+const inputOk = 'border-text1/15 focus:border-identifier';
+const inputErr = 'border-red-500 focus:border-red-500';
+const inputCls = (isError) =>
+  `${inputBase} ${isError ? inputErr : inputOk}`;
+
+const Field = ({ label, htmlFor, required, error, fullWidth, children }) => (
+  <div className={`flex flex-col ${fullWidth ? 'md:col-span-2' : ''}`}>
+    <label
+      htmlFor={htmlFor}
+      className='mb-2 text-xs uppercase tracking-widest text-text1/70'
+    >
+      {label}
+      {required && ' *'}
+    </label>
+    {children}
+    {error && <p className='text-red-500 text-sm mt-1'>{error}</p>}
+  </div>
+);
+
+const SectionHeading = ({ children }) => (
+  <div className='mt-14 mb-8 first:mt-0'>
+    <h2 className='text-2xl md:text-3xl font-extrabold tracking-wide'>
+      {children}
+    </h2>
+    <div className='border-b-2 border-identifier w-12 mt-3'></div>
+  </div>
+);
+
+const RadioOption = ({ id, name, value, label, checked, onChange }) => (
+  <label
+    htmlFor={id}
+    className='flex items-center gap-3 cursor-pointer py-1'
+  >
+    <input
+      type='radio'
+      id={id}
+      name={name}
+      value={value}
+      checked={checked}
+      onChange={onChange}
+      className='w-4 h-4 accent-identifier cursor-pointer'
+    />
+    <span>{label}</span>
+  </label>
+);
 
 const Vpis = () => {
   const initialFields = {
@@ -18,17 +67,16 @@ const Vpis = () => {
     'datum-rojstva': '',
     telefon: '',
     email: '',
-    tecaj: [],
-    obisk: [],
+    tecaj: '',
+    obisk: '',
     'druzinski-clani': '',
-    dovoljenje: [],
+    dovoljenje: '',
     zastopnik: '',
     priporocilo: '',
     strinjanje: false,
   };
 
   const [fields, setFields] = useState(initialFields);
-
   const [isEdit, setIsEdit] = useState(false);
   const [emailValid, setEmailValid] = useState(true);
   const [nameValid, setNameValid] = useState(true);
@@ -43,15 +91,16 @@ const Vpis = () => {
   const [allowValid, setAllowValid] = useState(true);
   const [formValid, setFormValid] = useState(true);
   const [agreementValid, setAgreementValid] = useState(true);
-  const [loading, setLoading] = useState(false);
   const [submissionSuccess, setSubmissionSuccess] = useState(false);
+  const [submissionError, setSubmissionError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
 
-    // Reset error and success messages when user starts typing
     setFormValid(true);
     setSubmissionSuccess(false);
+    setSubmissionError('');
 
     if (name === 'email') {
       setIsEdit(true);
@@ -87,43 +136,27 @@ const Vpis = () => {
     }
     if (name === 'tecaj') {
       setIsEdit(true);
-      setCourseValid(fields.tecaj.length > 0 || checked);
+      setCourseValid(true);
     }
     if (name === 'obisk') {
       setIsEdit(true);
-      setAttendanceValid(fields.obisk.length > 0 || checked);
+      setAttendanceValid(true);
     }
     if (name === 'dovoljenje') {
       setIsEdit(true);
-      setAllowValid(fields.dovoljenje.length > 0 || checked);
+      setAllowValid(true);
     }
     if (name === 'strinjanje') {
       setIsEdit(true);
       setAgreementValid(checked);
-      setFields((prevFields) => ({
-        ...prevFields,
-        [name]: checked, // Directly set the boolean value
-      }));
-      return; // Return early as we don't need to handle checkbox arrays
+      setFields((prev) => ({ ...prev, [name]: checked }));
+      return;
     }
 
-    if (type === 'checkbox' || type === 'radio') {
-      if (checked) {
-        setFields((prevFields) => ({
-          ...prevFields,
-          [name]: type === 'radio' ? [value] : [...prevFields[name], value],
-        }));
-      } else {
-        setFields((prevFields) => ({
-          ...prevFields,
-          [name]: prevFields[name].filter((item) => item !== value),
-        }));
-      }
+    if (type === 'checkbox') {
+      setFields((prev) => ({ ...prev, [name]: checked }));
     } else {
-      setFields((prevFields) => ({
-        ...prevFields,
-        [name]: name === 'strinjanje' ? checked : value,
-      }));
+      setFields((prev) => ({ ...prev, [name]: value }));
     }
   };
 
@@ -163,91 +196,6 @@ const Vpis = () => {
     }
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    const isValid = validateAllFields();
-    if (!isValid) {
-      setFormValid(false);
-      return;
-    }
-
-    setFormValid(true);
-    setLoading(true);
-
-    const currentDateTime = new Date().toISOString();
-    const datePart = currentDateTime.split('T')[0];
-    const dateObj = new Date(datePart);
-    const dateSubmitted = dateObj.toDateString().split(' ').splice(1).join(' ');
-
-    const datumRojstvaDateObj = new Date(fields['datum-rojstva']);
-    const datumRojstvaFormatted = datumRojstvaDateObj
-      .toDateString()
-      .split(' ')
-      .splice(1)
-      .join(' ');
-
-    const updatedFields = {
-      ...fields,
-      'datum-prijave': dateSubmitted,
-      'datum-rojstva': datumRojstvaFormatted,
-    };
-
-    console.log('Form Data:', updatedFields);
-
-    try {
-      console.log('Sending Data:', { fields });
-      const url =
-        'https://karatefunctionapp.azurewebsites.net/api/processforminput';
-      const httpMethod = 'POST';
-      const rawBody = {
-        Ime: fields.ime,
-        Priimek: fields.priimek,
-        NaslovBivalisca: fields['naslov-bivalisca'],
-        PostnaSt: fields['postna-st'],
-        Kraj: fields.kraj,
-        DatumRoj: datumRojstvaFormatted,
-        Telefon: fields.telefon,
-        Email: fields.email,
-        Tecaj: `${fields.tecaj[0]}`,
-        Obisk: `${fields.obisk[0]}`,
-        DruClani: fields['druzinski-clani'],
-        Dovoljenje: `${fields.dovoljenje[0]}`,
-        Zastopnik: fields.zastopnik,
-        Priporocilo: fields.priporocilo,
-        Strinjanje: fields.strinjanje,
-      };
-      const body = JSON.stringify(rawBody);
-      const headers = {
-        'x-functions-key': process.env.AZURE_API_FUNCTIONS_KEY,
-        'Content-Type': 'application/json',
-      };
-
-      console.log('body:', body);
-
-      const response = await fetch(url, {
-        method: httpMethod,
-        // mode: 'no-cors',
-        headers: headers,
-        body,
-      });
-
-      if (response.ok) {
-        setSubmissionSuccess(true); // Set submission success state
-      } else {
-        alert(`Ups, prišlo je do napake:`);
-      }
-
-      // Reset fields after successful submission
-      setFields(initialFields);
-    } catch (error) {
-      console.error('Error sending email:', error.message);
-      alert(`Failed to send email: ${error.message}`);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const validateAllFields = () => {
     const isNameValid = fields.ime.trim() !== '';
     const isSurnameValid = fields.priimek.trim() !== '';
@@ -257,9 +205,9 @@ const Vpis = () => {
     const isPhoneValid = phoneRegex.test(fields.telefon);
     const isEmailValid = emailRegex.test(fields.email);
     const isDobValid = fields['datum-rojstva'].trim() !== '';
-    const isCourseValid = fields.tecaj.length > 0;
-    const isAttendanceValid = fields.obisk.length > 0;
-    const isAllowValid = fields.dovoljenje.length > 0;
+    const isCourseValid = fields.tecaj !== '';
+    const isAttendanceValid = fields.obisk !== '';
+    const isAllowValid = fields.dovoljenje !== '';
     const isAgreementValid = fields.strinjanje;
 
     setNameValid(isNameValid);
@@ -291,362 +239,451 @@ const Vpis = () => {
     );
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const isValid = validateAllFields();
+    if (!isValid) {
+      setFormValid(false);
+      return;
+    }
+
+    setFormValid(true);
+    setLoading(true);
+    setSubmissionError('');
+
+    const datumRojstvaDateObj = new Date(fields['datum-rojstva']);
+    const datumRojstvaFormatted = datumRojstvaDateObj
+      .toDateString()
+      .split(' ')
+      .splice(1)
+      .join(' ');
+
+    try {
+      const url =
+        'https://karatefunctionapp.azurewebsites.net/api/processforminput';
+      const rawBody = {
+        Ime: fields.ime,
+        Priimek: fields.priimek,
+        NaslovBivalisca: fields['naslov-bivalisca'],
+        PostnaSt: fields['postna-st'],
+        Kraj: fields.kraj,
+        DatumRoj: datumRojstvaFormatted,
+        Telefon: fields.telefon,
+        Email: fields.email,
+        Tecaj: fields.tecaj,
+        Obisk: fields.obisk,
+        DruClani: fields['druzinski-clani'],
+        Dovoljenje: fields.dovoljenje,
+        Zastopnik: fields.zastopnik,
+        Priporocilo: fields.priporocilo,
+        Strinjanje: fields.strinjanje,
+      };
+
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'x-functions-key': process.env.GATSBY_AZURE_API_FUNCTIONS_KEY,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(rawBody),
+      });
+
+      if (response.ok) {
+        setSubmissionSuccess(true);
+        setFields(initialFields);
+      } else {
+        setSubmissionError('Ups, prišlo je do napake. Prosimo, poskusite znova.');
+      }
+    } catch (error) {
+      setSubmissionError(`Napaka pri pošiljanju: ${error.message}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <Layout>
-      <div className='bg-layout2 font-oswald  text-text1 px-10 flex flex-col items-center  py-20 md:py-40'>
-        <form
-          className='flex flex-col max-w-[30rem]'
-          action='/submit'
-          method='post'
-          onSubmit={handleSubmit}
-        >
-          <label htmlFor='ime' className='mb-1'>
-            IME*
-          </label>
-          <input
-            type='text'
-            id='ime'
-            name='ime'
-            className='mb-3 px-1 text-black'
-            value={fields.ime}
-            onChange={handleChange}
-            onBlur={handleBlur}
+      <div className='-mt-20 font-oswald'>
+        <div className='relative w-full min-h-[40vh] md:min-h-[70vh] overflow-hidden'>
+          <StaticImage
+            src='https://res.cloudinary.com/di4ms4xaz/image/upload/v1723159813/karate-kickbox-ostalo/goardssdi7slsfgaji5q.jpg'
+            alt='Vpis'
+            className='!absolute inset-0 w-full h-full'
+            imgClassName='!scale-150 !origin-top md:!scale-100 md:!origin-center'
+            loading='eager'
+            placeholder='blurred'
+            objectFit='cover'
+            objectPosition='center 40%'
+            layout='fullWidth'
+            quality={100}
+            formats={['auto', 'webp', 'avif']}
+            breakpoints={[750, 1080, 1366, 1920, 2560]}
           />
-          <div>
-            {!nameValid && (
-              <p className='text-red-500 mb-5'>Prosim vnesite ime.</p>
-            )}
+          <div className='absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/40 z-10'></div>
+          <div className='relative z-20 flex items-center justify-center min-h-[40vh] md:min-h-[70vh] pt-20'>
+            <div className='text-center text-text1 px-6 animate-fade-up animate-duration-1000'>
+              <h1 className='text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-wider leading-tight'>
+                VPIS
+              </h1>
+              <div className='border-b-4 border-identifier w-16 mt-5 mx-auto animate-fade-up animate-duration-1000 animate-delay-500'></div>
+            </div>
           </div>
+        </div>
 
-          <label htmlFor='priimek' className='mb-1'>
-            PRIIMEK*
-          </label>
-          <input
-            type='text'
-            id='priimek'
-            name='priimek'
-            className='mb-3 px-1 text-black'
-            value={fields.priimek}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          />
-          <div>
-            {!surnameValid && (
-              <p className='text-red-500 mb-5'>Prosim vnesite priimek.</p>
-            )}
-          </div>
-
-          <label htmlFor='naslov-bivalisca' className='mb-1'>
-            NASLOV BIVALIŠČA*
-          </label>
-          <input
-            type='text'
-            id='naslov-bivalisca'
-            name='naslov-bivalisca'
-            className='mb-3 px-1 text-black'
-            value={fields['naslov-bivalisca']}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          />
-          <div>
-            {!addressValid && !isEdit && (
-              <p className='text-red-500 mb-5'>Prosim vnesite ime ulice.</p>
-            )}
-          </div>
-
-          <label htmlFor='postna-st' className='mb-1'>
-            POŠTNA ŠT.*
-          </label>
-          <input
-            type='number'
-            id='postna-st'
-            name='postna-st'
-            className='mb-3 px-1 text-black'
-            value={fields['postna-st']}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            inputMode='numeric'
-            pattern='[0-9]'
-          />
-          <div>
-            {!cityNumValid && !isEdit && (
-              <p className='text-red-500 mb-5'>
-                Prosim vnesite poštno številko.
-              </p>
-            )}
-          </div>
-
-          <label htmlFor='kraj' className='mb-1'>
-            KRAJ*
-          </label>
-          <input
-            type='text'
-            id='kraj'
-            name='kraj'
-            className='mb-3 px-1 text-black'
-            value={fields.kraj}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          />
-          <div>
-            {!cityValid && !isEdit && (
-              <p className='text-red-500 mb-5'>Prosim vnesite kraj.</p>
-            )}
-          </div>
-
-          <label htmlFor='datum-rojstva' className='mb-1'>
-            DATUM ROJSTVA*
-          </label>
-          <input
-            type='date'
-            id='datum-rojstva'
-            name='datum-rojstva'
-            className='mb-3 text-black px-1'
-            value={fields['datum-rojstva']}
-            onChange={handleChange}
-            lang='sl'
-            max={today}
-          />
-          <div>
-            {!dobValid && !isEdit && (
-              <p className='text-red-500 mb-5'>
-                Prosim izberite datum rojstva.
-              </p>
-            )}
-          </div>
-
-          <label htmlFor='telefon' className='mb-1'>
-            ŠT. MOBILNEGA TELEFONA (za pošiljanje obvestil po SMS)*
-          </label>
-          <input
-            type='number'
-            id='telefon'
-            name='telefon'
-            className='mb-3 text-black px-1'
-            value={fields.telefon}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          />
-          <div>
-            {!phoneValid && !isEdit && (
-              <p className='text-red-500 mb-5'>
-                Prosim vnesite veljavno številko telefona.
-              </p>
-            )}
-          </div>
-
-          <label htmlFor='email' className='mb-1'>
-            ELEKTRONSKA POŠTA*
-          </label>
-          <input
-            type='email'
-            id='email'
-            name='email'
-            className='mb-3 text-black px-1'
-            value={fields.email}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          />
-          <div>
-            {!emailValid && !isEdit && (
-              <p className='text-red-500 mb-5'>
-                Prosim vnesite veljaven elektronski naslov.
-              </p>
-            )}
-          </div>
-
-          <span className='mb-1'>VPISUJEM SE V TEČAJ*</span>
-          <div>
-            <input
-              type='radio'
-              id='mladostniki'
-              name='tecaj'
-              value='kickbox_mladostniki_ziri'
-              checked={fields.tecaj.includes('kickbox_mladostniki_ziri')}
-              className='mb-3'
-              onChange={handleChange}
-            />
-            <label htmlFor='mladostniki' className='m-1'>
-              Kickbox Mladostniki
-            </label>
-          </div>
-          <div className='mb-3'>
-            <input
-              type='radio'
-              id='odrasli'
-              name='tecaj'
-              value='kickbox_odrasli_ziri'
-              checked={fields.tecaj.includes('kickbox_odrasli_ziri')}
-              className='mb-3'
-              onChange={handleChange}
-            />
-            <label htmlFor='odrasli' className='m-1'>
-              Kickbox Odrasli
-            </label>
-          </div>
-          <div>
-            {!courseValid && !isEdit && (
-              <p className='text-red-500 mb-5'>Prosim izberite tečaj.</p>
-            )}
-          </div>
-
-          <span className='mb-1'>TEČAJ BOM OBISKOVAL (TEDENSKO)*</span>
-          <div className='mb-1'>
-            <input
-              type='radio'
-              id='2x'
-              name='obisk'
-              value='2x'
-              checked={fields.obisk.includes('2x')}
-              onChange={handleChange}
-            />
-            <label htmlFor='2x' className='m-1'>
-              2x
-            </label>
-          </div>
-          <div>
-            <input
-              type='radio'
-              id='1x'
-              name='obisk'
-              value='1x'
-              checked={fields.obisk.includes('1x')}
-              onChange={handleChange}
-            />
-            <label htmlFor='1x' className='m-1'>
-              1x
-            </label>
-          </div>
-
-          <div>
-            {!attendanceValid && !isEdit && (
-              <p className='text-red-500 mb-5'>
-                Prosim izberite frekvenco obiska.
-              </p>
-            )}
-          </div>
-
-          <label htmlFor='druzinski-clani' className='mt-3 mb-1'>
-            VPIŠITE IMENA DRUGIH DRUŽINSKIH ČLANOV, KI SO VKLJUČENI V NAŠE
-            PROGRAME (upoštevanje popusta)
-          </label>
-          <textarea
-            id='druzinski-clani'
-            name='druzinski-clani'
-            className=' text-black px-1 mb-5'
-            onChange={handleChange}
-            value={fields['druzinski-clani']}
-          ></textarea>
-
-          <label htmlFor='zastopnik' className='mb-1'>
-            ZASTOPNIK (če si mladoleten/a, vpiši ime in priimek starša oz.
-            zakonitega zastopnika)
-          </label>
-          <input
-            type='text'
-            id='zastopnik'
-            name='zastopnik'
-            className=' px-1 text-black mb-5'
-            onChange={handleChange}
-            value={fields.zastopnik}
-          />
-
-          <label htmlFor='priporocilo' className='mb-1'>
-            V KLUB SE VČLANJUJEM PO PRIPOROČILU (ime in priimek našega člana)
-          </label>
-          <textarea
-            id='priporocilo'
-            name='priporocilo'
-            className=' text-black px-1 mb-5'
-            onChange={handleChange}
-            value={fields.priporocilo}
-          ></textarea>
-
-          <span htmlFor='dovoljenje' className='mb-1'>
-            Dovoljujem, da se izpolnjeni podatki in podatki o mojih tekmovalnih
-            uspehih ter fotografije s tekmovanj ali treningov uporabljajo za
-            potrebe Karate instituta, Karate kluba Kolektor Idrija, Karate kluba
-            Cerkno ali Karate kluba Žiri. *
-          </span>
-          <div>
-            <input
-              type='radio'
-              id='da'
-              name='dovoljenje'
-              value='da'
-              className='mb-3'
-              checked={fields.dovoljenje.includes('da')}
-              onChange={handleChange}
-            />
-            <label htmlFor='da' className='m-1'>
-              DA
-            </label>
-          </div>
-          <div className='mb-3'>
-            <input
-              type='radio'
-              id='ne'
-              name='dovoljenje'
-              value='ne'
-              className='mb-3'
-              checked={fields.dovoljenje.includes('ne')}
-              onChange={handleChange}
-            />
-            <label htmlFor='ne' className='m-1'>
-              NE
-            </label>
-          </div>
-          <div>
-            {!allowValid && (
-              <p className='text-red-500 mb-5'>Prosimo, izberite.</p>
-            )}
-          </div>
-
-          <span className='mt-5 mb-1 text-center'>
-            S potrditvijo se strinjate s{' '}
-            <Link to='/pogoji-uporabe/' className='text-blue-600'>
-              pogoji uporabe in varovanjem osebnih podatkov.
-            </Link>
-          </span>
-          <div className='text-center mb-1'>
-            <input
-              type='checkbox'
-              id='strinjanje'
-              name='strinjanje'
-              value='da'
-              className='mb-3'
-              checked={fields.strinjanje}
-              onChange={handleChange}
-            />
-            <label htmlFor='se-strinjam' className='m-1'>
-              Se strinjam
-            </label>
-          </div>
-
-          <div>
-            {!agreementValid && (
-              <p className='text-red-500 mb-8 text-center'>
-                Za upsešno prijavo se je potrebno strinjati.
-              </p>
-            )}
-          </div>
-
-          <button
-            type='submit'
-            className='mx-auto mt-5 w-32 bg-identifier border-4 border-identifier rounded-sm py-3 px-6 text-xl cursor-pointer hover:text-text1 hover:bg-transparent transition-colors duration-200 ease-in-out`'
+        <div className='bg-layout2 text-text1 py-16 md:py-24'>
+          <form
+            className='max-w-3xl mx-auto px-6 md:px-8'
+            action='/submit'
+            method='post'
+            onSubmit={handleSubmit}
           >
-            {loading ? <ClipLoader size={24} color='#ffffff' /> : 'Prijava'}
-          </button>
+            <SectionHeading>OSEBNI PODATKI</SectionHeading>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5'>
+              <Field
+                label='IME'
+                htmlFor='ime'
+                required
+                error={!nameValid && 'Prosim vnesite ime.'}
+              >
+                <input
+                  type='text'
+                  id='ime'
+                  name='ime'
+                  className={inputCls(!nameValid)}
+                  value={fields.ime}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+              </Field>
 
-          {!formValid && (
-            <p className='text-red-500 mt-3 text-center'>
-              Prosim izpolnite vsa obvezna polja.
-            </p>
-          )}
-          {submissionSuccess && formValid && (
-            <p className='text-green-500 mt-3 text-center'>Prijava uspešna!</p>
-          )}
-        </form>
+              <Field
+                label='PRIIMEK'
+                htmlFor='priimek'
+                required
+                error={!surnameValid && 'Prosim vnesite priimek.'}
+              >
+                <input
+                  type='text'
+                  id='priimek'
+                  name='priimek'
+                  className={inputCls(!surnameValid)}
+                  value={fields.priimek}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+              </Field>
+
+              <Field
+                label='NASLOV BIVALIŠČA'
+                htmlFor='naslov-bivalisca'
+                required
+                fullWidth
+                error={
+                  !addressValid && !isEdit && 'Prosim vnesite ime ulice.'
+                }
+              >
+                <input
+                  type='text'
+                  id='naslov-bivalisca'
+                  name='naslov-bivalisca'
+                  className={inputCls(!addressValid && !isEdit)}
+                  value={fields['naslov-bivalisca']}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+              </Field>
+
+              <Field
+                label='POŠTNA ŠT.'
+                htmlFor='postna-st'
+                required
+                error={
+                  !cityNumValid && !isEdit && 'Prosim vnesite poštno številko.'
+                }
+              >
+                <input
+                  type='number'
+                  id='postna-st'
+                  name='postna-st'
+                  className={inputCls(!cityNumValid && !isEdit)}
+                  value={fields['postna-st']}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+              </Field>
+
+              <Field
+                label='KRAJ'
+                htmlFor='kraj'
+                required
+                error={!cityValid && !isEdit && 'Prosim vnesite kraj.'}
+              >
+                <input
+                  type='text'
+                  id='kraj'
+                  name='kraj'
+                  className={inputCls(!cityValid && !isEdit)}
+                  value={fields.kraj}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+              </Field>
+
+              <Field
+                label='DATUM ROJSTVA'
+                htmlFor='datum-rojstva'
+                required
+                error={
+                  !dobValid && !isEdit && 'Prosim izberite datum rojstva.'
+                }
+              >
+                <input
+                  type='date'
+                  id='datum-rojstva'
+                  name='datum-rojstva'
+                  className={inputCls(!dobValid && !isEdit)}
+                  value={fields['datum-rojstva']}
+                  onChange={handleChange}
+                  lang='sl'
+                  max={today}
+                />
+              </Field>
+
+              <Field
+                label='ŠT. MOBILNEGA TELEFONA (za pošiljanje obvestil po SMS)'
+                htmlFor='telefon'
+                required
+                error={
+                  !phoneValid && !isEdit && 'Prosim vnesite veljavno številko telefona.'
+                }
+              >
+                <input
+                  type='tel'
+                  id='telefon'
+                  name='telefon'
+                  inputMode='tel'
+                  className={inputCls(!phoneValid && !isEdit)}
+                  value={fields.telefon}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+              </Field>
+
+              <Field
+                label='ELEKTRONSKA POŠTA'
+                htmlFor='email'
+                required
+                fullWidth
+                error={
+                  !emailValid && !isEdit && 'Prosim vnesite veljaven elektronski naslov.'
+                }
+              >
+                <input
+                  type='email'
+                  id='email'
+                  name='email'
+                  className={inputCls(!emailValid && !isEdit)}
+                  value={fields.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+              </Field>
+            </div>
+
+            <SectionHeading>TEČAJ</SectionHeading>
+
+            <Field
+              label='VPISUJEM SE V TEČAJ'
+              htmlFor='tecaj'
+              required
+              error={!courseValid && !isEdit && 'Prosim izberite tečaj.'}
+            >
+              <div className='flex flex-col gap-1 mt-1'>
+                <RadioOption
+                  id='mladostniki'
+                  name='tecaj'
+                  value='kickbox_mladostniki_ziri'
+                  label='Kickbox Mladostniki'
+                  checked={fields.tecaj === 'kickbox_mladostniki_ziri'}
+                  onChange={handleChange}
+                />
+                <RadioOption
+                  id='odrasli'
+                  name='tecaj'
+                  value='kickbox_odrasli_ziri'
+                  label='Kickbox Odrasli'
+                  checked={fields.tecaj === 'kickbox_odrasli_ziri'}
+                  onChange={handleChange}
+                />
+              </div>
+            </Field>
+
+            <div className='mt-6'>
+              <Field
+                label='TEČAJ BOM OBISKOVAL (TEDENSKO)'
+                htmlFor='obisk'
+                required
+                error={
+                  !attendanceValid && !isEdit && 'Prosim izberite frekvenco obiska.'
+                }
+              >
+                <div className='flex flex-col gap-1 mt-1'>
+                  <RadioOption
+                    id='2x'
+                    name='obisk'
+                    value='2x'
+                    label='2x'
+                    checked={fields.obisk === '2x'}
+                    onChange={handleChange}
+                  />
+                  <RadioOption
+                    id='1x'
+                    name='obisk'
+                    value='1x'
+                    label='1x'
+                    checked={fields.obisk === '1x'}
+                    onChange={handleChange}
+                  />
+                </div>
+              </Field>
+            </div>
+
+            <div className='mt-6'>
+              <Field
+                label='VPIŠITE IMENA DRUGIH DRUŽINSKIH ČLANOV, KI SO VKLJUČENI V NAŠE PROGRAME (upoštevanje popusta)'
+                htmlFor='druzinski-clani'
+              >
+                <textarea
+                  id='druzinski-clani'
+                  name='druzinski-clani'
+                  rows={3}
+                  className={`${inputCls(false)} resize-none`}
+                  onChange={handleChange}
+                  value={fields['druzinski-clani']}
+                />
+              </Field>
+            </div>
+
+            <div className='mt-6'>
+              <Field
+                label='ZASTOPNIK (če si mladoleten/a, vpiši ime in priimek starša oz. zakonitega zastopnika)'
+                htmlFor='zastopnik'
+              >
+                <input
+                  type='text'
+                  id='zastopnik'
+                  name='zastopnik'
+                  className={inputCls(false)}
+                  onChange={handleChange}
+                  value={fields.zastopnik}
+                />
+              </Field>
+            </div>
+
+            <div className='mt-6'>
+              <Field
+                label='V KLUB SE VČLANJUJEM PO PRIPOROČILU (ime in priimek našega člana)'
+                htmlFor='priporocilo'
+              >
+                <textarea
+                  id='priporocilo'
+                  name='priporocilo'
+                  rows={2}
+                  className={`${inputCls(false)} resize-none`}
+                  onChange={handleChange}
+                  value={fields.priporocilo}
+                />
+              </Field>
+            </div>
+
+            <SectionHeading>SOGLASJA</SectionHeading>
+
+            <Field
+              label='Dovoljujem, da se izpolnjeni podatki in podatki o mojih tekmovalnih uspehih ter fotografije s tekmovanj ali treningov uporabljajo za potrebe Karate instituta, Karate kluba Kolektor Idrija, Karate kluba Cerkno ali Karate kluba Žiri.'
+              htmlFor='dovoljenje'
+              required
+              error={!allowValid && 'Prosimo, izberite.'}
+            >
+              <div className='flex gap-6 mt-2'>
+                <RadioOption
+                  id='da'
+                  name='dovoljenje'
+                  value='da'
+                  label='DA'
+                  checked={fields.dovoljenje === 'da'}
+                  onChange={handleChange}
+                />
+                <RadioOption
+                  id='ne'
+                  name='dovoljenje'
+                  value='ne'
+                  label='NE'
+                  checked={fields.dovoljenje === 'ne'}
+                  onChange={handleChange}
+                />
+              </div>
+            </Field>
+
+            <div className='mt-8 p-5 bg-white border border-text1/15'>
+              <label
+                htmlFor='strinjanje'
+                className='flex items-start gap-3 cursor-pointer text-black'
+              >
+                <input
+                  type='checkbox'
+                  id='strinjanje'
+                  name='strinjanje'
+                  className='mt-1 w-4 h-4 accent-identifier cursor-pointer shrink-0'
+                  checked={fields.strinjanje}
+                  onChange={handleChange}
+                />
+                <span className='text-sm leading-relaxed'>
+                  Se strinjam s{' '}
+                  <Link
+                    to='/pogoji-uporabe/'
+                    className='text-identifier hover:underline'
+                  >
+                    pogoji uporabe in varovanjem osebnih podatkov.
+                  </Link>
+                </span>
+              </label>
+              {!agreementValid && (
+                <p className='text-red-500 text-sm mt-2'>
+                  Za uspešno prijavo se je potrebno strinjati.
+                </p>
+              )}
+            </div>
+
+            <div className='mt-10 text-center'>
+              <button
+                type='submit'
+                disabled={loading}
+                className='inline-flex items-center justify-center min-w-[12rem] bg-identifier border-2 border-identifier py-3 px-8 text-lg lg:text-xl text-text1 cursor-pointer hover:text-identifier hover:bg-transparent transition-colors duration-200 ease-in-out tracking-wider disabled:opacity-60 disabled:cursor-not-allowed'
+              >
+                {loading ? (
+                  <ClipLoader size={22} color='currentColor' />
+                ) : (
+                  'PRIJAVA'
+                )}
+              </button>
+            </div>
+
+            {!formValid && (
+              <p className='text-red-500 mt-4 text-center'>
+                Prosim izpolnite vsa obvezna polja.
+              </p>
+            )}
+            {submissionError && (
+              <p className='text-red-500 mt-4 text-center'>{submissionError}</p>
+            )}
+            {submissionSuccess && formValid && (
+              <p className='text-emerald-400 mt-4 text-center font-semibold'>
+                Prijava je bila uspešno poslana!
+              </p>
+            )}
+          </form>
+        </div>
       </div>
     </Layout>
   );
@@ -654,8 +691,9 @@ const Vpis = () => {
 
 export default Vpis;
 
-export const Head = () => (
+export const Head = ({ location }) => (
   <Seo
+    pathname={location.pathname}
     title='Vpis'
     description='Vpišite se v naše kickboks programe za mladostnike in odrasle v Karate klubu Žiri. Pod vodstvom izkušenih trenerjev boste razvijali moč, vzdržljivost in samoobrambne spretnosti. Naši treningi so zasnovani tako, da vam pomagajo doseči vaše fitnes cilje, hkrati pa spodbujajo samozavest in zdrav življenjski slog. Pridružite se zdaj in izkusite intenzivnost in energijo kickboksa v motivirajočem okolju.'
   />

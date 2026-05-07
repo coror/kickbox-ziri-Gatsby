@@ -1,137 +1,129 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState } from 'react';
 import Layout from '../components/Layout';
-import Spinner from '../components/Spinner'; // Import the Spinner component
 import { useStaticQuery, graphql } from 'gatsby';
+import { StaticImage } from 'gatsby-plugin-image';
+import { Gallery, Item } from 'react-photoswipe-gallery';
+import 'photoswipe/style.css';
 import Seo from '../components/Seo';
 
-const Galerija = () => {
-  const [clImages, setClImages] = useState([]);
-  const [loading, setLoading] = useState(true); // State to track loading status
+const optimize = (url, transform = 'f_auto,q_auto:best') => {
+  const clean = url.split('?')[0];
+  const match = clean.match(
+    /^(https?:\/\/[^/]+\/[^/]+\/upload\/)(?:[^v][^/]*\/)?v\d+\/(.+)$/
+  );
+  if (!match) return clean;
+  return `${match[1]}${transform}/${match[2]}`;
+};
 
+const blurUrl = (url) =>
+  optimize(url, 'e_blur:1000,w_60,h_60,c_fill,f_auto,q_30');
+
+const Galerija = () => {
   const data = useStaticQuery(graphql`
     query CloudinaryImage {
       allCloudinaryMedia {
         edges {
           node {
             secure_url
+            width
+            height
           }
         }
       }
     }
   `);
 
-  useEffect(() => {
-    const preloadImages = async () => {
-      const validImages = [];
-      for (const image of data.allCloudinaryMedia.edges) {
-        const img = new Image();
-        img.src = image.node.secure_url;
-        await new Promise((resolve) => {
-          img.onload = () => {
-            validImages.push(image);
-            resolve();
-          };
-          img.onerror = () => resolve(); // Ignore broken images
-        });
-      }
-      setClImages(validImages);
-      setLoading(false); // Set loading to false after images are loaded
-    };
+  const allImages = data.allCloudinaryMedia.edges
+    .map((e) => e.node)
+    .filter((n) => n.secure_url.includes('/image/upload/'));
 
-    preloadImages();
-  }, [data.allCloudinaryMedia.edges]);
-
-  // State to track which image is clicked for fullscreen view
-  const [selectedImage, setSelectedImage] = useState(null);
-
-  const handleClick = (imageIndex) => {
-    setSelectedImage(imageIndex);
-  };
-
-  const handleKeyDown = (event, imageIndex) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      setSelectedImage(imageIndex);
-    }
-  };
-
-  const handleClose = () => {
-    setSelectedImage(null);
-  };
-
-  const handleCloseKeyDown = useCallback(
-    (event) => {
-      if (event.key === 'Escape' || event.key === ' ') {
-        setSelectedImage(null);
-      } else if (event.key === 'ArrowRight') {
-        setSelectedImage((prevIndex) => (prevIndex + 1) % clImages.length);
-      } else if (event.key === 'ArrowLeft') {
-        setSelectedImage(
-          (prevIndex) => (prevIndex - 1 + clImages.length) % clImages.length
-        );
-      }
-    },
-    [clImages.length]
-  );
-
-  useEffect(() => {
-    if (selectedImage !== null) {
-      document.addEventListener('keydown', handleCloseKeyDown);
-    } else {
-      document.removeEventListener('keydown', handleCloseKeyDown);
-    }
-    return () => {
-      document.removeEventListener('keydown', handleCloseKeyDown);
-    };
-  }, [selectedImage, handleCloseKeyDown]);
+  const [failed, setFailed] = useState(() => new Set());
+  const images = allImages.filter((img) => !failed.has(img.secure_url));
 
   return (
     <Layout>
-      <div className='bg-layout2 py-10 md:py-40 '>
-        <div className='container mx-auto'>
-          {loading ? ( // Show spinner while loading
-            <Spinner loading={true} />
-          ) : (
-            <div className='grid m-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-              {clImages.map((image, index) => (
-                <div
-                  key={index}
-                  className='relative'
-                  tabIndex={0}
-                  onClick={() => handleClick(index)}
-                  onKeyDown={(event) => handleKeyDown(event, index)}
-                  role='button'
-                  aria-label={`Open image ${index}`}
-                >
-                  <img
-                    src={image.node.secure_url}
-                    alt={`${index}`}
-                    className='rounded-lg cursor-pointer object-cover w-full h-64 sm:h-48 md:h-56 lg:h-64 xl:h-80'
-                  />
-                </div>
-              ))}
+      <div className='-mt-20 font-oswald'>
+        <div className='relative w-full min-h-[40vh] md:min-h-[70vh] overflow-hidden'>
+          <StaticImage
+            src='https://res.cloudinary.com/di4ms4xaz/image/upload/v1723159813/karate-kickbox-ostalo/goardssdi7slsfgaji5q.jpg'
+            alt='Galerija'
+            className='!absolute inset-0 w-full h-full'
+            imgClassName='!scale-150 !origin-top md:!scale-100 md:!origin-center'
+            loading='eager'
+            placeholder='blurred'
+            objectFit='cover'
+            objectPosition='center 40%'
+            layout='fullWidth'
+            quality={100}
+            formats={['auto', 'webp', 'avif']}
+            breakpoints={[750, 1080, 1366, 1920, 2560]}
+          />
+          <div className='absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/40 z-10'></div>
+          <div className='relative z-20 flex items-center justify-center min-h-[40vh] md:min-h-[70vh] pt-20'>
+            <div className='text-center text-text1 px-6 animate-fade-up animate-duration-1000'>
+              <h1 className='text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-wider leading-tight'>
+                GALERIJA
+              </h1>
+              <div className='border-b-4 border-identifier w-16 mt-5 mx-auto animate-fade-up animate-duration-1000 animate-delay-500'></div>
             </div>
-          )}
+          </div>
+        </div>
 
-          {/* Fullscreen overlay */}
-          {selectedImage !== null && (
-            <div
-              className='fixed top-0 left-0 w-full h-full flex items-center justify-center z-50 overflow-hidden'
-              style={{ backgroundColor: 'rgba(0,0,0,0.8)', zIndex: 50 }}
-              onClick={handleClose}
-              onKeyDown={handleCloseKeyDown}
-              tabIndex={0}
-              role='button'
-              aria-label='Close fullscreen image'
+        <div className='bg-layout2 py-16 md:py-24'>
+          <div className='max-w-7xl mx-auto px-4 md:px-8'>
+            <Gallery
+              options={{
+                bgOpacity: 0.95,
+                showHideAnimationType: 'fade',
+              }}
             >
-              <div className='max-w-3/4 rounded-lg p-12 overflow-hidden'>
-                <img
-                  src={clImages[selectedImage].node.secure_url}
-                  alt={`${selectedImage}`}
-                  className='rounded-lg shadow-xl object-contain max-h-full'
-                />
+              <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4'>
+                {images.map((img, i) => (
+                  <Item
+                    key={i}
+                    original={optimize(img.secure_url)}
+                    thumbnail={optimize(
+                      img.secure_url,
+                      'c_fill,w_600,h_600,f_auto,q_auto'
+                    )}
+                    width={img.width}
+                    height={img.height}
+                  >
+                    {({ ref, open }) => (
+                      <button
+                        ref={ref}
+                        onClick={open}
+                        type='button'
+                        style={{
+                          backgroundImage: `url("${blurUrl(img.secure_url)}")`,
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center',
+                        }}
+                        className='group relative overflow-hidden rounded-md w-full h-48 sm:h-56 md:h-64 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-identifier focus-visible:ring-offset-2'
+                        aria-label={`Odpri sliko ${i + 1}`}
+                      >
+                        <img
+                          src={optimize(
+                            img.secure_url,
+                            'c_fill,w_600,h_600,f_auto,q_auto'
+                          )}
+                          alt={`Galerija slika ${i + 1}`}
+                          loading='lazy'
+                          onError={() =>
+                            setFailed(
+                              (prev) => new Set(prev).add(img.secure_url)
+                            )
+                          }
+                          className='relative w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]'
+                        />
+                        <div className='absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-300'></div>
+                      </button>
+                    )}
+                  </Item>
+                ))}
               </div>
-            </div>
-          )}
+            </Gallery>
+          </div>
         </div>
       </div>
     </Layout>
@@ -140,8 +132,9 @@ const Galerija = () => {
 
 export default Galerija;
 
-export const Head = () => (
+export const Head = ({ location }) => (
   <Seo
+    pathname={location.pathname}
     title='Galerija'
     description='Raziščite našo galerijo, kjer si lahko ogledate fotografije naših dogodkov in skupnostnih aktivnosti. Pridobite vpogled v živahno in podporno okolje, ki vam pomaga doseči vaše cilje.'
   />

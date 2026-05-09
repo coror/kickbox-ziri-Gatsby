@@ -60,7 +60,7 @@ const Trenerji = () => {
           <div className='border-b-4 border-identifier w-16 mt-5'></div>
         </div>
 
-        <div className='flex flex-col md:flex-row justify-center items-start gap-8 md:gap-12'>
+        <div className='flex flex-col md:flex-row justify-center items-center md:items-start gap-8 md:gap-12'>
           <TrainerCard
             to='/trenerji/#erin'
             name='Erin Ćoralić'

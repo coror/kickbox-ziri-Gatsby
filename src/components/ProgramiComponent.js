@@ -119,6 +119,7 @@ const Programi = () => {
                 alt='mladostniki'
                 className='w-full h-full'
                 objectFit='cover'
+                objectPosition='center 35%'
               />
             }
           />

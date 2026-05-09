@@ -2,39 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @keyframes slideInFromLeft {
-    from {
-      transform: translateX(-100%); /* Start from the left edge of the viewport */
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0); /* End at its final position */
-      opacity: 1;
-    }
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
   }
-  
-  @keyframes slideOutToLeft {
-    from {
-      transform: translateX(0); /* Start from its final position */
-      opacity: 1;
-    }
-    to {
-      transform: translateX(-100%); /* Move to the left edge of the viewport */
-      opacity: 0;
-    }
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
-  
-  .mobile-menu-enter {
-    animation: slideInFromLeft 0.3s ease-out forwards; /* Change to slideInFromLeft if needed */
-  }
-  
-  .mobile-menu-exit {
-    animation: slideOutToLeft 0.3s ease-in forwards; /* Change to slideOutToLeft if needed */
-  }
+}
 
-  input[type=number]::-webkit-inner-spin-button, 
-  input[type=number]::-webkit-outer-spin-button { 
-    -webkit-appearance: none; 
-    margin: 0; 
+@keyframes slideOutToLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
   }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+.mobile-menu-enter {
+  animation: slideInFromLeft 0.3s ease-out forwards;
+}
+
+.mobile-menu-exit {
+  animation: slideOutToLeft 0.3s ease-in forwards;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
